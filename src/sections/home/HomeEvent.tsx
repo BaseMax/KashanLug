@@ -49,7 +49,7 @@ const INFO_ROWS: InfoRow[] = [
 export class HomeEvent implements Mithril.ClassComponent {
   view(): m.Vnode {
     return (
-      <section class="relative py-20 sm:py-28">
+      <section id="home-event" class="relative py-20 sm:py-28">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
           <div class="relative rounded-[2.5rem] overflow-hidden border border-ui bg-card2">
             <div class="absolute inset-0 bg-dots dark:bg-dots-dark opacity-40 pointer-events-none"></div>

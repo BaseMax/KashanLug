@@ -18,8 +18,7 @@ import { Auth }     from "@/pages/Auth";
 import { Resume }   from "@/pages/Resume";
 import { NotFound } from "@/pages/NotFound";
 
-// m.route.prefix = "/#";
-m.route.prefix = "https://basemax.github.io/KashanLug/#";
+m.route.prefix = "#";
 
 const app = document.getElementById("app");
 if (!app) throw new Error("No #app element found");

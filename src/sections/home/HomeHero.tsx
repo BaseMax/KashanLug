@@ -118,12 +118,15 @@ export class HomeHero implements Mithril.ClassComponent {
 
         {/* Scroll indicator */}
         <div class="absolute bottom-6 inset-x-0 flex justify-center">
-          <div class="flex flex-col items-center gap-1 text-white/50">
+          <button
+            class="flex flex-col items-center gap-1 text-white/50 hover:text-white/80 transition-colors cursor-pointer bg-transparent border-0 p-0"
+            onclick={() => document.getElementById("home-event")?.scrollIntoView({ behavior: "smooth" })}
+          >
             <span class="text-xs font-medium">اسکرول کنید</span>
             <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
             </svg>
-          </div>
+          </button>
         </div>
       </section>
     );
