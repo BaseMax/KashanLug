@@ -1,6 +1,6 @@
 # Kashan LUG - کاشان‌لاگ
 
-> Official website of **KashanLUG** (Kashan Linux User Group) - a community dedicated to open-source, Linux, and free-software culture in Kashan, Iran.
+> New website of **KashanLUG** (Kashan Linux User Group) - a community dedicated to open-source, Linux, and free-software culture in Kashan, Iran.
 
 **Live site:** [kashanlug.ir](https://kashanlug.ir/) &nbsp;|&nbsp; **GitHub:** [baseMax/kashanlug](https://github.com/baseMax/kashanlug)
 
