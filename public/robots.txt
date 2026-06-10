@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Block crawling of hash-fragment pages (not needed; served from root)
+Disallow: /#/auth
+Disallow: /#/resume
+
+Sitemap: https://kashanlug.ir/sitemap.xml

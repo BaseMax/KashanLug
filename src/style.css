@@ -16,7 +16,7 @@
   --font-sans: "Vazirmatn", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", "Consolas", ui-monospace, monospace;
 
-  /* Brand — orange */
+  /* Brand - orange */
   --color-brand-50:  #fff7ed;
   --color-brand-100: #ffedd5;
   --color-brand-200: #fed7aa;
@@ -29,13 +29,13 @@
   --color-brand-900: #7c2d12;
   --color-brand-950: #431407;
 
-  /* Terminal — green */
+  /* Terminal - green */
   --color-term-300: #86efac;
   --color-term-400: #4ade80;
   --color-term-500: #22c55e;
   --color-term-600: #16a34a;
 
-  /* Ink — used only in dark mode (via [data-theme="dark"]) */
+  /* Ink - used only in dark mode (via [data-theme="dark"]) */
   --color-ink-950: #0a0a0b;
   --color-ink-900: #101012;
   --color-ink-850: #16161a;

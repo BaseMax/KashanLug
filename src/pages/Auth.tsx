@@ -1,7 +1,8 @@
 import m from "mithril";
-import { Layout }   from "@/components/Layout";
-import { Btn }      from "@/components/ui/Btn";
-import { OtpInput } from "@/components/ui/OtpInput";
+import { Layout }        from "@/components/Layout";
+import { Btn }           from "@/components/ui/Btn";
+import { OtpInput }      from "@/components/ui/OtpInput";
+import { TerminalBlock } from "@/components/TerminalBlock";
 import { setTitle, faDigit } from "@/lib/utils";
 
 type Step = "phone" | "otp";
@@ -68,17 +69,12 @@ export class Auth implements Mithril.ClassComponent {
         <main class="min-h-screen pt-20 flex items-center">
           <div class="w-full max-w-5xl mx-auto px-4 sm:px-6 py-12">
             <div class="grid lg:grid-cols-2 gap-10 items-stretch">
+
               {/* Terminal decoration */}
               <div class="hidden lg:flex flex-col relative">
                 <div class="absolute -inset-1 bg-gradient-to-br from-brand-600/15 to-term-600/8 rounded-3xl blur-xl"></div>
-                <div class="relative flex-1 bg-ink-900 border border-white/10 rounded-3xl overflow-hidden" dir="ltr">
-                  <div class="flex items-center gap-2 px-4 py-3 bg-ink-850 border-b border-white/5">
-                    <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
-                    <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
-                    <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
-                    <span class="ml-auto font-mono text-xs text-gray-500">auth_service.sh</span>
-                  </div>
-                  <div class="p-6 font-mono text-sm space-y-2 text-gray-400">
+                <div class="relative flex-1">
+                  <TerminalBlock filename="auth_service.sh">
                     <p><span class="text-term-400">$</span> <span class="text-gray-200">./auth_service --start</span></p>
                     <p>Initializing secure connection...</p>
                     <p>Loading user database... <span class="text-term-400">OK</span></p>
@@ -90,7 +86,7 @@ export class Auth implements Mithril.ClassComponent {
                     <p class="pl-4">Loaded: <span class="text-term-400">enabled</span></p>
                     <p class="pl-4">Active: <span class="text-term-400">running</span></p>
                     <p class="pl-4">Community: <span class="text-brand-400">online</span></p>
-                  </div>
+                  </TerminalBlock>
                 </div>
               </div>
 
@@ -100,7 +96,9 @@ export class Auth implements Mithril.ClassComponent {
                   {this.done ? (
                     <div class="text-center py-8">
                       <div class="w-16 h-16 mx-auto rounded-full bg-term-500/10 text-term-600 dark:text-term-400 flex items-center justify-center mb-5">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
                       </div>
                       <h2 class="text-2xl font-black text-fore mb-2">خوش آمدید!</h2>
                       <p class="text-muted">ورود شما با موفقیت انجام شد.</p>
@@ -124,24 +122,23 @@ export class Auth implements Mithril.ClassComponent {
                     <form onsubmit={(e: Event) => this.verifyOtp(e)}>
                       <button type="button" onclick={() => { this.step = "phone"; }}
                         class="cursor-pointer flex items-center gap-2 text-muted hover:text-fore text-sm mb-7 transition-colors">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/></svg>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
+                        </svg>
                         ویرایش شماره
                       </button>
                       <h2 class="text-2xl font-black text-fore mb-2">کد تأیید</h2>
                       <p class="text-muted text-sm mb-8" dir="ltr">
                         کد ۶ رقمی ارسال‌شده به <span class="text-fore">{this.phone}</span> را وارد کنید.
                       </p>
-
                       <OtpInput
                         values={this.otp}
                         oninput={(i: number, val: string) => this.handleOtpInput(i, val)}
                         onkeydown={(i: number, e: KeyboardEvent) => this.handleOtpKey(i, e)}
                       />
-
                       <Btn type="submit" disabled={this.sending || this.otp.join("").length < 6} class="w-full py-4 rounded-2xl mt-8 mb-5">
                         {this.sending ? "در حال تأیید..." : "تأیید و ورود"}
                       </Btn>
-
                       <div class="text-center text-sm text-dim">
                         {resendTimer ? (
                           <span>ارسال مجدد تا <span class="text-fore tabular-nums" dir="ltr">{resendTimer}</span></span>
@@ -156,6 +153,7 @@ export class Auth implements Mithril.ClassComponent {
                   )}
                 </div>
               </div>
+
             </div>
           </div>
         </main>

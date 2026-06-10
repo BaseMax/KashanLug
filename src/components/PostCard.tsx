@@ -26,7 +26,7 @@ export class PostCard implements Mithril.ClassComponent<Attrs> {
         </div>
         <div class="p-6 flex flex-col flex-1">
           {compact ? (
-            <div class="text-xs text-dim mb-3">{p.author} — {p.date}</div>
+            <div class="text-xs text-dim mb-3">{p.author} - {p.date}</div>
           ) : (
             <div class="flex items-center gap-3 text-xs text-dim mb-3">
               <span>{p.author}</span>

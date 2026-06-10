@@ -1,22 +1,10 @@
 import m from "mithril";
-import { Layout }         from "@/components/Layout";
+import { Layout }        from "@/components/Layout";
+import { AboutIntro }    from "@/sections/about/AboutIntro";
+import { AboutStory }    from "@/sections/about/AboutStory";
+import { AboutStats }    from "@/sections/about/AboutStats";
+import { AboutValues }   from "@/sections/about/AboutValues";
 import { hashPath, setTitle } from "@/lib/utils";
-
-const STATS = [
-  { n: "۱۴۰۵", l: "سال تأسیس" },
-  { n: "۱۳",   l: "عضو تیم اجرایی" },
-  { n: "۷+",   l: "سخنران رویداد" },
-  { n: "۱۲۰",  l: "ظرفیت رویداد" },
-];
-
-const VALUES = [
-  { title: "آزادی دانش",      desc: "هرچه در کاشان‌لاگ تولید می‌شود، تحت لایسنس CC BY منتشر می‌شود." },
-  { title: "احترام",          desc: "سطح فنی، جنسیت، سن و پیشینه هیچ‌کس ملاک ارزش‌گذاری نیست." },
-  { title: "استقلال",         desc: "هیچ شرکت یا نهادی بر روند رشد لاگ تعیین‌کننده نیست." },
-  { title: "شفافیت",          desc: "تمام تصمیم‌های هستهٔ اجرایی با جامعه در میان گذاشته می‌شود." },
-  { title: "بی‌طرفی سیاسی",  desc: "کاشان‌لاگ یک انجمن فنی است و جانب هیچ حزب یا گروه سیاسی را نمی‌گیرد." },
-  { title: "غیرتجاری",        desc: "تمام رویدادها با هدف آموزش و شبکه‌سازی برگزار می‌شوند." },
-];
 
 export class About implements Mithril.ClassComponent {
   oninit() { setTitle("درباره ما"); }
@@ -28,82 +16,10 @@ export class About implements Mithril.ClassComponent {
           <div class="glow w-[36rem] h-96 bg-brand-500/8 -top-10 right-0"></div>
 
           <div class="relative max-w-5xl mx-auto px-4 sm:px-6">
-            <div class="text-center mb-16">
-              <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-ui border border-ui text-sm text-fore2 mb-7 font-mono" dir="ltr">
-                whoami → kashanlug
-              </div>
-              <h1 class="text-4xl sm:text-5xl font-black text-fore mb-5">دربارهٔ کاشان‌لاگ</h1>
-              <p class="text-muted text-lg max-w-2xl mx-auto leading-relaxed">
-                جامعه‌ای مستقل از علاقه‌مندان به گنو/لینوکس، نرم‌افزار آزاد و فناوری‌های متن‌باز در کاشان.
-              </p>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-12 mb-20 items-start">
-              <div class="space-y-5 text-fore2 leading-relaxed">
-                <h2 class="text-2xl font-black text-fore">داستان ما</h2>
-                <p>
-                  کاشان‌لاگ از دل یک ایده ساده بیرون آمد: می‌خواستیم جمعی از علاقه‌مندان
-                  به فناوری متن‌باز در کاشان داشته باشیم که بتوانند با هم یاد بگیرند، تجربه
-                  تبادل کنند و در فضایی دوستانه رشد کنند.
-                </p>
-                <p>
-                  اولین رویداد ما، «زندگی در سایه»، با موضوع اینترنت و تأثیر آن بر زندگی،
-                  کسب‌وکار و جامعه مدنی برگزار می‌شود. این رویداد آغازی است برای یک مسیر طولانی‌تر.
-                </p>
-                <p>
-                  باور داریم که دانش فنی باید آزادانه منتقل شود، ابزارهای آزاد در اختیار
-                  همه باشد، و جامعه‌های محلی بتوانند مستقل از شرکت‌های بزرگ، مهارت و دانش خود را بسازند.
-                </p>
-              </div>
-
-              <div class="relative">
-                <div class="absolute -inset-1 bg-gradient-to-tr from-brand-600/15 to-term-600/8 rounded-3xl blur-lg"></div>
-                <div class="relative bg-ink-900 border border-white/10 rounded-3xl overflow-hidden" dir="ltr">
-                  <div class="flex items-center gap-2 px-4 py-3 bg-ink-850 border-b border-white/5">
-                    <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
-                    <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
-                    <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
-                    <span class="ml-auto font-mono text-xs text-gray-500">about.sh</span>
-                  </div>
-                  <div class="p-5 font-mono text-sm space-y-2">
-                    <p><span class="text-term-400">$</span> <span class="text-gray-200">cat /etc/kashanlug/info</span></p>
-                    <p class="text-gray-400">NAME="KashanLUG"</p>
-                    <p class="text-gray-400">TYPE="Linux Users Group"</p>
-                    <p class="text-gray-400">CITY="Kashan, Iran"</p>
-                    <p class="text-gray-400">FOUNDED="1405"</p>
-                    <p class="text-gray-400">LICENSE="CC BY 4.0"</p>
-                    <p class="text-gray-400">POLITICAL="Neutral"</p>
-                    <p class="text-gray-400">COMMERCIAL="Non-profit"</p>
-                    <p><span class="text-term-400">$</span> <span class="text-gray-200">echo $WELCOME</span></p>
-                    <p class="text-brand-300">به جامعهٔ متن‌باز کاشان خوش آمدید!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-5 mb-20">
-              {STATS.map((s) => (
-                <div key={s.n} class="bg-card border border-ui rounded-2xl p-6 text-center">
-                  <div class="text-3xl font-black text-brand-600 dark:text-brand-400 mb-2">{s.n}</div>
-                  <div class="text-dim text-sm">{s.l}</div>
-                </div>
-              ))}
-            </div>
-
-            <div class="mb-20">
-              <h2 class="text-2xl font-black text-fore mb-8 text-center">ارزش‌های ما</h2>
-              <div class="grid sm:grid-cols-2 gap-5">
-                {VALUES.map((v) => (
-                  <div key={v.title} class="flex items-start gap-4 p-5 rounded-2xl bg-card border border-ui">
-                    <div class="w-2 h-2 rounded-full bg-brand-500 mt-2 shrink-0"></div>
-                    <div>
-                      <div class="text-fore font-bold mb-1">{v.title}</div>
-                      <p class="text-muted text-sm leading-relaxed">{v.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <AboutIntro />
+            <AboutStory />
+            <AboutStats />
+            <AboutValues />
 
             <div class="grid sm:grid-cols-2 gap-4">
               <a href={hashPath("/charter")}

@@ -1,17 +1,11 @@
 import m from "mithril";
-import { Layout }     from "@/components/Layout";
-import { FilterTabs } from "@/components/ui/FilterTabs";
-import { schedule }   from "@/data/event";
-import { setTitle }   from "@/lib/utils";
+import { Layout }        from "@/components/Layout";
+import { FilterTabs }    from "@/components/ui/FilterTabs";
+import { DiscountNote }  from "@/components/DiscountNote";
+import { schedule, KIND_META, eventInfo } from "@/data/event";
+import { setTitle }      from "@/lib/utils";
 
-const KIND_META: Record<string, { dot: string; badge: string; label: string }> = {
-  talk:     { dot: "bg-brand-500",  badge: "bg-brand-500/10 text-brand-600 dark:text-brand-400",  label: "سخنرانی"  },
-  ceremony: { dot: "bg-sky-500",    badge: "bg-sky-500/10 text-sky-600 dark:text-sky-400",        label: "مراسم"    },
-  network:  { dot: "bg-term-500",   badge: "bg-term-500/10 text-term-600 dark:text-term-400",     label: "نتورکینگ" },
-  break:    { dot: "bg-gray-400",   badge: "bg-gray-400/10 text-gray-600 dark:text-gray-400",     label: "استراحت"  },
-};
-
-const FILTERS = ["همه", "سخنرانی", "مراسم", "نتورکینگ"];
+const FILTERS = ["همه", ...Object.values(KIND_META).map((v) => v.label)];
 
 export class Schedule implements Mithril.ClassComponent {
   filter = "همه";
@@ -21,8 +15,7 @@ export class Schedule implements Mithril.ClassComponent {
   view() {
     const visible = schedule.filter((s) => {
       if (this.filter === "همه") return true;
-      const k = s.kind ?? "ceremony";
-      return KIND_META[k]?.label === this.filter;
+      return KIND_META[s.kind ?? "ceremony"]?.label === this.filter;
     });
 
     return (
@@ -33,10 +26,10 @@ export class Schedule implements Mithril.ClassComponent {
           <div class="relative max-w-4xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-12">
               <h1 class="text-4xl sm:text-5xl font-black text-fore title-underline pb-2 mb-6 inline-block">برنامهٔ زمانی</h1>
-              <p class="text-muted max-w-lg mx-auto">برنامهٔ رویداد «زندگی در سایه» - پنج‌شنبه ۲۱ خرداد ۱۴۰۵، ساعت ۱۷:۰۰ تا ۲۱:۰۰</p>
+              <p class="text-muted max-w-lg mx-auto">برنامهٔ رویداد «زندگی در سایه» - {eventInfo.dateFa}، ساعت {eventInfo.timeFa}</p>
             </div>
 
-            <div class="flex justify-center mb-12">
+            <div class="flex justify-center mb-10">
               <FilterTabs items={FILTERS} active={this.filter} onchange={(f: string) => { this.filter = f; }} />
             </div>
 
@@ -53,7 +46,7 @@ export class Schedule implements Mithril.ClassComponent {
               <div class="absolute right-7 top-0 bottom-0 w-px bg-ui"></div>
               <div class="space-y-4">
                 {visible.map((slot, i) => {
-                  const k = slot.kind ?? "ceremony";
+                  const k  = slot.kind ?? "ceremony";
                   const st = KIND_META[k] ?? KIND_META.ceremony;
                   return (
                     <div key={slot.start} class="relative flex items-start gap-6 fade-in-up" style={`animation-delay:${i * 0.05}s`}>
@@ -77,16 +70,12 @@ export class Schedule implements Mithril.ClassComponent {
             </div>
 
             <div class="mt-16 text-center">
-              <a href="https://evnd.co/H45r2" target="_blank" rel="noopener"
+              <a href={eventInfo.registerUrl} target="_blank" rel="noopener"
                 class="inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-bold text-white bg-gradient-to-l from-brand-600 to-brand-500 shadow-xl shadow-brand-700/20 hover:-translate-y-1 transition-all">
-                ثبت‌نام در رویداد — ۲۵۰٬۰۰۰ تومان
+                ثبت‌نام در رویداد - {eventInfo.price}
               </a>
-              <p class="text-dim text-sm mt-3 text-right" dir="rtl">
-                با کد‌
-                <span dir="ltr" class="text-brand-600 dark:text-brand-400 font-bold inline-block">
-                  KLUG
-                </span>
-                ‌، ۲۰ بلیت نخست با ۳۰٪ تخفیف
+              <p class="text-dim text-sm mt-3">
+                <DiscountNote variant="card" />
               </p>
             </div>
           </div>

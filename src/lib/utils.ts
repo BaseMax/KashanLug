@@ -14,12 +14,10 @@ export function setTitle(title: string): void {
   document.title = title ? `${title} | کاشان‌لاگ` : "کاشان‌لاگ | گروه کاربران لینوکس کاشان";
 }
 
-/** Wrap English/code text so it renders LTR inside RTL context. */
 export function ltr(text: string): string {
   return `<span dir="ltr" class="ltr-inline">${text}</span>`;
 }
 
-/** Simple string hash for deterministic color picks. */
 export function strHash(s: string): number {
   let h = 0;
   for (let i = 0; i < s.length; i++) h = (Math.imul(31, h) + s.charCodeAt(i)) | 0;

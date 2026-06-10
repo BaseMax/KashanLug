@@ -102,6 +102,13 @@ export const topics: string[] = [
   "فرصتی برای آشنایی، گفت‌وگو و شبکه‌سازی میان علاقه‌مندان و متخصصان حوزه فناوری",
 ];
 
+export const KIND_META: Record<string, { dot: string; badge: string; label: string }> = {
+  talk:     { dot: "bg-brand-500", badge: "bg-brand-500/10 text-brand-600 dark:text-brand-400", label: "سخنرانی"  },
+  ceremony: { dot: "bg-sky-500",   badge: "bg-sky-500/10 text-sky-600 dark:text-sky-400",       label: "مراسم"    },
+  network:  { dot: "bg-term-500",  badge: "bg-term-500/10 text-term-600 dark:text-term-400",    label: "نتورکینگ" },
+  break:    { dot: "bg-gray-400",  badge: "bg-gray-400/10 text-gray-600 dark:text-gray-400",    label: "استراحت"  },
+};
+
 export const organizers: Org[] = [
   { name: "کاشان‌لاگ", desc: "گروه علاقه‌مندان به جریان متن‌باز کاشان" },
   { name: "تهلاگ", desc: "گروهی مستقل از کاربران لینوکس ساکن تهران" },

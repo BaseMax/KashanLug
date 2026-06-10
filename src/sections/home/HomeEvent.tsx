@@ -1,7 +1,8 @@
 import m from "mithril";
-import { Countdown } from "@/components/Countdown";
-import { eventInfo } from "@/data/event";
-import { hashPath } from "@/lib/utils";
+import { Countdown }    from "@/components/Countdown";
+import { DiscountNote } from "@/components/DiscountNote";
+import { eventInfo }    from "@/data/event";
+import { hashPath }     from "@/lib/utils";
 
 export class HomeEvent implements Mithril.ClassComponent {
   view() {
@@ -22,7 +23,7 @@ export class HomeEvent implements Mithril.ClassComponent {
                 <div class="flex flex-wrap gap-4">
                   <a href={eventInfo.registerUrl} target="_blank" rel="noopener"
                     class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-bold text-white bg-gradient-to-l from-brand-600 to-brand-500 shadow-lg shadow-brand-700/20 hover:-translate-y-1 transition-all">
-                    خرید بلیت — {eventInfo.price}
+                    خرید بلیت - {eventInfo.price}
                   </a>
                   <a href={hashPath("/event")}
                     class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-bold text-fore2 bg-ui border border-ui hover:bg-ui2 transition-all">
@@ -36,7 +37,7 @@ export class HomeEvent implements Mithril.ClassComponent {
                     iconBg: "bg-brand-500/10 text-brand-600 dark:text-brand-400",
                     icon: <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>,
                     title: "زمان برگزاری",
-                    body: `${eventInfo.dateFa} — ${eventInfo.timeFa}`,
+                    body: `${eventInfo.dateFa} - ${eventInfo.timeFa}`,
                   },
                   {
                     iconBg: "bg-term-500/10 text-term-600 dark:text-term-400",
@@ -60,9 +61,7 @@ export class HomeEvent implements Mithril.ClassComponent {
                       {item.body && <div class="text-muted text-sm mt-1">{item.body}</div>}
                       {i === 2 && (
                         <div class="text-muted text-sm mt-1">
-                          با کد{" "}
-                          <span dir="ltr" class="ltr-inline font-bold text-brand-600 dark:text-brand-400">{eventInfo.discountCode}</span>
-                          ، {eventInfo.discountNote}
+                          <DiscountNote variant="card" />
                         </div>
                       )}
                     </div>
