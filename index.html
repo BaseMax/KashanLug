@@ -6,7 +6,19 @@
     <title>کاشان‌لاگ | گروه کاربران لینوکس کاشان</title>
     <meta name="description" content="کاشان‌لاگ – گروه کاربران لینوکس کاشان. رویداد زندگی در سایه، پنج‌شنبه ۲۱ خرداد ۱۴۰۵." />
     <link rel="icon" type="image/png" href="/assets/images/logo-light.png" />
-    <style>body{background:#0a0a0b;color:#e5e7eb;font-family:Vazirmatn,system-ui,sans-serif}</style>
+    <!-- Prevent FOUC: apply saved theme before paint -->
+    <script>
+      (function() {
+        try {
+          var t = localStorage.getItem('kashanlug-theme');
+          if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        } catch(e) {}
+      })();
+    </script>
+    <style>
+      body { background-color: #fafaf8; color: #111110; font-family: Vazirmatn, system-ui, sans-serif; }
+      [data-theme="dark"] body { background-color: #0a0a0b; color: #ffffff; }
+    </style>
     <script type="module" src="/src/main.tsx"></script>
   </head>
   <body>

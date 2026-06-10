@@ -24,17 +24,17 @@ export class Blog implements Mithril.ClassComponent {
     return (
       <Layout>
         <main class="pt-32 pb-24 relative overflow-hidden">
-          <div class="glow w-[34rem] h-96 bg-brand-600/10 -top-10 left-0"></div>
+          <div class="glow w-[34rem] h-96 bg-brand-500/8 -top-10 left-0"></div>
 
           <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-12">
-              <h1 class="text-4xl sm:text-5xl font-black text-white title-underline pb-2 mb-6 inline-block">پست‌های آزاد</h1>
-              <p class="text-gray-400 max-w-xl mx-auto">مقالاتی از اعضای جامعهٔ لینوکس کاشان دربارهٔ نرم‌افزار آزاد، زیرساخت و توسعه.</p>
+              <h1 class="text-4xl sm:text-5xl font-black text-fore title-underline pb-2 mb-6 inline-block">پست‌های آزاد</h1>
+              <p class="text-muted max-w-xl mx-auto">مقالاتی از اعضای جامعهٔ لینوکس کاشان دربارهٔ نرم‌افزار آزاد، زیرساخت و توسعه.</p>
             </div>
 
             <div class="flex flex-col md:flex-row md:items-center gap-4 mb-10">
               <div class="relative flex-1">
-                <svg class="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 text-dim" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                 </svg>
                 <input
@@ -42,7 +42,7 @@ export class Blog implements Mithril.ClassComponent {
                   value={this.query}
                   oninput={(e: InputEvent) => { this.query = (e.target as HTMLInputElement).value; }}
                   placeholder="جستجو در مقاله‌ها..."
-                  class="w-full pr-12 pl-4 py-3 rounded-2xl bg-ink-900 border border-white/10 text-white placeholder-gray-600 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 outline-none transition"
+                  class="w-full pr-12 pl-4 py-3 rounded-2xl bg-card border border-ui text-fore placeholder:text-dim focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 outline-none transition"
                 />
               </div>
               <div class="overflow-x-auto no-scrollbar">
@@ -61,14 +61,14 @@ export class Blog implements Mithril.ClassComponent {
                 ))}
               </div>
             ) : (
-              <div class="py-20 text-center text-gray-500">
+              <div class="py-20 text-center text-dim">
                 <p class="font-mono" dir="ltr">$ grep "{this.query}" posts/ → no results</p>
                 <p class="mt-2">مقاله‌ای با این مشخصات یافت نشد.</p>
               </div>
             )}
 
             {filtered.length > 0 && (
-              <p class="mt-12 text-center text-gray-600 text-sm font-mono" dir="ltr">- end of list -</p>
+              <p class="mt-12 text-center text-dim text-sm font-mono" dir="ltr">- end of list -</p>
             )}
           </div>
         </main>

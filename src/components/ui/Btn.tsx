@@ -16,9 +16,9 @@ interface Attrs {
 }
 
 const VARIANT: Record<BtnVariant, string> = {
-  primary: "bg-gradient-to-l from-brand-600 to-brand-500 text-white shadow-lg shadow-brand-900/30",
-  ghost:   "bg-white/5 border border-white/10 text-white hover:bg-white/10",
-  outline: "border border-white/10 text-gray-300 hover:bg-white/5",
+  primary: "bg-gradient-to-l from-brand-600 to-brand-500 text-white shadow-lg shadow-brand-700/20",
+  ghost:   "bg-ui border border-ui text-fore2 hover:bg-ui2",
+  outline: "border border-ui text-fore2 hover:bg-ui",
   danger:  "bg-red-600/90 text-white hover:bg-red-500",
 };
 

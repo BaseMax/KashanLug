@@ -10,10 +10,10 @@ export class HomeBlog implements Mithril.ClassComponent {
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
           <div class="flex flex-wrap items-end justify-between gap-4 mb-12">
             <div>
-              <h2 class="text-3xl sm:text-4xl font-black text-white title-underline pb-2 inline-block">از پست‌های آزاد</h2>
-              <p class="text-gray-400 mt-4">مقالاتی از اعضای جامعهٔ کاشان‌لاگ</p>
+              <h2 class="text-3xl sm:text-4xl font-black text-fore title-underline pb-2 inline-block">از پست‌های آزاد</h2>
+              <p class="text-muted mt-4">مقالاتی از اعضای جامعهٔ کاشان‌لاگ</p>
             </div>
-            <a href={hashPath("/blog")} class="text-brand-400 hover:text-brand-300 font-bold text-sm">همهٔ مقاله‌ها ›</a>
+            <a href={hashPath("/blog")} class="text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 font-bold text-sm transition-colors">همهٔ مقاله‌ها ›</a>
           </div>
           <div class="grid md:grid-cols-3 gap-6">
             {posts.slice(0, 3).map((p) => (

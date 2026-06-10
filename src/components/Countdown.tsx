@@ -27,9 +27,9 @@ export class Countdown implements Mithril.ClassComponent {
     return (
       <div class="grid grid-cols-4 gap-3">
         {items.map((item) => (
-          <div key={item.l} class="bg-ink-950/60 border border-white/10 rounded-2xl py-4 text-center">
+          <div key={item.l} class="bg-black/25 border border-white/15 rounded-2xl py-4 text-center backdrop-blur-sm">
             <div class="text-2xl sm:text-3xl font-black text-white tabular-nums">{item.v}</div>
-            <div class="text-[11px] text-gray-500 mt-1">{item.l}</div>
+            <div class="text-[11px] text-white/50 mt-1">{item.l}</div>
           </div>
         ))}
       </div>

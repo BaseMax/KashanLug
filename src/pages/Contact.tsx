@@ -33,20 +33,20 @@ export class Contact implements Mithril.ClassComponent {
     return (
       <Layout>
         <main class="pt-32 pb-24 relative overflow-hidden">
-          <div class="glow w-[34rem] h-96 bg-term-600/8 -top-10 right-0"></div>
+          <div class="glow w-[34rem] h-96 bg-term-500/6 -top-10 right-0"></div>
 
           <div class="relative max-w-5xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-14">
-              <h1 class="text-4xl sm:text-5xl font-black text-white title-underline pb-2 mb-6 inline-block">تماس با ما</h1>
-              <p class="text-gray-400 max-w-xl mx-auto">سوال دارید، پیشنهادی دارید یا می‌خواهید همکاری کنید؟ با ما در ارتباط باشید.</p>
+              <h1 class="text-4xl sm:text-5xl font-black text-fore title-underline pb-2 mb-6 inline-block">تماس با ما</h1>
+              <p class="text-muted max-w-xl mx-auto">سوال دارید، پیشنهادی دارید یا می‌خواهید همکاری کنید؟ با ما در ارتباط باشید.</p>
             </div>
 
             <div class="grid lg:grid-cols-2 gap-12">
               <div class="space-y-4">
-                <h2 class="text-xl font-black text-white mb-6">راه‌های ارتباطی</h2>
+                <h2 class="text-xl font-black text-fore mb-6">راه‌های ارتباطی</h2>
                 {CONTACT_ITEMS.map((c) => (
-                  <div key={c.title} class="flex items-center gap-4 p-5 rounded-2xl bg-ink-900 border border-white/10">
-                    <div class="w-11 h-11 rounded-xl bg-brand-500/15 text-brand-400 flex items-center justify-center shrink-0">
+                  <div key={c.title} class="flex items-center gap-4 p-5 rounded-2xl bg-card border border-ui">
+                    <div class="w-11 h-11 rounded-xl bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0">
                       {c.icon === "email" && (
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                       )}
@@ -58,14 +58,14 @@ export class Contact implements Mithril.ClassComponent {
                       )}
                     </div>
                     <div class="min-w-0">
-                      <div class="text-white font-bold text-sm">{c.title}</div>
+                      <div class="text-fore font-bold text-sm">{c.title}</div>
                       {c.href ? (
                         <a href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noopener"
-                          class={`text-brand-400 text-sm hover:text-brand-300 transition-colors ${c.ltr ? "ltr-inline" : ""}`}>
+                          class={`text-brand-600 dark:text-brand-400 text-sm hover:text-brand-700 dark:hover:text-brand-300 transition-colors ${c.ltr ? "ltr-inline" : ""}`}>
                           {c.val}
                         </a>
                       ) : (
-                        <span class="text-gray-400 text-sm">{c.val}</span>
+                        <span class="text-muted text-sm">{c.val}</span>
                       )}
                     </div>
                   </div>
@@ -73,7 +73,7 @@ export class Contact implements Mithril.ClassComponent {
               </div>
 
               <div>
-                <h2 class="text-xl font-black text-white mb-6">فرم تماس</h2>
+                <h2 class="text-xl font-black text-fore mb-6">فرم تماس</h2>
                 {this.sent ? (
                   <SuccessCard title="پیام شما ارسال شد!" subtitle="در اسرع وقت با شما در ارتباط خواهیم بود." />
                 ) : (

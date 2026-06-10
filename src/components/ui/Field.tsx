@@ -14,11 +14,11 @@ interface Attrs {
 
 export class Field implements Mithril.ClassComponent<Attrs> {
   view({ attrs }: Mithril.CVnode<Attrs>) {
-    const bg = attrs.bg ?? "bg-ink-900";
-    const base = `w-full px-4 py-3 rounded-2xl ${bg} border border-white/10 text-white focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 outline-none transition`;
+    const bg = attrs.bg ?? "bg-card3";
+    const base = `w-full px-4 py-3 rounded-2xl ${bg} border border-ui text-fore placeholder:text-dim focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 outline-none transition`;
     return (
       <div>
-        <label class="block text-sm text-gray-400 mb-1.5">{attrs.label}</label>
+        <label class="block text-sm text-muted mb-1.5">{attrs.label}</label>
         {attrs.rows ? (
           <textarea
             rows={attrs.rows}

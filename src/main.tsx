@@ -1,5 +1,8 @@
 import m from "mithril";
 import "./style.css";
+import { initTheme } from "@/lib/theme";
+
+initTheme();
 
 import { Home }     from "@/pages/Home";
 import { Event }    from "@/pages/Event";

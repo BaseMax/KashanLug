@@ -24,10 +24,10 @@ export class Home implements Mithril.ClassComponent {
 
         <section class="relative py-12">
           <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <p class="text-center text-gray-500 text-sm mb-8">حامیان و برگزارکنندگان</p>
+            <p class="text-center text-muted text-sm mb-8">حامیان و برگزارکنندگان</p>
             <div class="flex flex-wrap items-center justify-center gap-3">
               {SPONSORS.map((s) => (
-                <span key={s} class="px-4 py-2 rounded-xl bg-ink-800 border border-white/10 text-gray-300 text-sm font-medium">{s}</span>
+                <span key={s} class="px-4 py-2 rounded-xl bg-card border border-ui text-fore2 text-sm font-medium">{s}</span>
               ))}
             </div>
           </div>

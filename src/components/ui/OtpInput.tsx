@@ -20,7 +20,7 @@ export class OtpInput implements Mithril.ClassComponent<Attrs> {
             value={v}
             oninput={(e: InputEvent) => attrs.oninput(i, (e.target as HTMLInputElement).value)}
             onkeydown={(e: KeyboardEvent) => attrs.onkeydown(i, e)}
-            class="w-11 h-14 rounded-xl bg-ink-800 border border-white/10 text-white text-center text-xl font-black focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 outline-none transition"
+            class="w-11 h-14 rounded-xl bg-card3 border border-ui text-fore text-center text-xl font-black focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 outline-none transition"
           />
         ))}
       </div>

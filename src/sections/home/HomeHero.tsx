@@ -5,72 +5,125 @@ import { hashPath } from "@/lib/utils";
 export class HomeHero implements Mithril.ClassComponent {
   view() {
     return (
-      <section class="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
-        <div class="absolute inset-0 bg-grid opacity-60"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-ink-950/30 via-ink-950/70 to-ink-950"></div>
-        <div class="glow w-[40rem] h-[40rem] bg-brand-600/20 -top-40 -right-40"></div>
-        <div class="glow w-[32rem] h-[32rem] bg-term-600/10 bottom-0 -left-40"></div>
+      <section class="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-brand-500 via-brand-600 to-brand-700">
 
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 w-full">
-          <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-            <div class="text-center lg:text-right">
-              <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm text-gray-300 mb-7 fade-in-up">
-                <span class="relative flex h-2.5 w-2.5">
-                  <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-term-400 opacity-75"></span>
-                  <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-term-500"></span>
+        {/* ── Background layers ── */}
+        {/* Grid pattern */}
+        <div class="absolute inset-0 bg-hero-pattern opacity-100 pointer-events-none"></div>
+
+        {/* Radial glow blobs */}
+        <div class="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-brand-400/40 blur-[100px] pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-[500px] h-[500px] rounded-full bg-orange-700/50 blur-[80px] pointer-events-none"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-brand-600/30 blur-[120px] pointer-events-none"></div>
+
+        {/* Decorative floating circles */}
+        <div class="absolute top-20 left-[10%] w-3 h-3 rounded-full bg-white/30 animate-float pointer-events-none"></div>
+        <div class="absolute top-[35%] left-[5%] w-2 h-2 rounded-full bg-white/25 pointer-events-none" style="animation:float 7s ease-in-out infinite;animation-delay:1s"></div>
+        <div class="absolute bottom-[30%] left-[15%] w-4 h-4 rounded-full bg-white/20 pointer-events-none" style="animation:float 9s ease-in-out infinite;animation-delay:2s"></div>
+        <div class="absolute top-[20%] right-[8%] w-2.5 h-2.5 rounded-full bg-white/25 pointer-events-none" style="animation:float 8s ease-in-out infinite;animation-delay:0.5s"></div>
+        <div class="absolute bottom-[25%] right-[5%] w-3.5 h-3.5 rounded-full bg-white/20 pointer-events-none" style="animation:float 6s ease-in-out infinite;animation-delay:1.5s"></div>
+
+        {/* Decorative rings */}
+        <div class="absolute -bottom-10 -right-10 w-64 h-64 rounded-full border border-white/10 pointer-events-none"></div>
+        <div class="absolute -bottom-20 -right-20 w-96 h-96 rounded-full border border-white/8 pointer-events-none"></div>
+        <div class="absolute top-10 left-10 w-40 h-40 rounded-full border border-white/10 pointer-events-none"></div>
+
+        {/* Gradient fade to page background at bottom */}
+        <div class="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-b from-transparent to-brand-700/60 pointer-events-none"></div>
+
+        {/* ── Content ── */}
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 w-full pt-28 pb-20">
+          <div class="grid lg:grid-cols-2 gap-12 lg:gap-10 items-center">
+
+            {/* Left: Text content */}
+            <div class="text-center lg:text-right order-2 lg:order-1">
+
+              {/* Live badge */}
+              <div class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full glass-light text-white text-sm font-bold mb-8 fade-in-up">
+                <span class="relative flex h-2.5 w-2.5 shrink-0">
+                  <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75"></span>
+                  <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-white"></span>
                 </span>
                 ثبت‌نام رویداد آغاز شد
               </div>
 
-              <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.15] mb-6 fade-in-up" style="animation-delay:.08s">
-                جایی برای <span class="text-gradient">دانشِ آزاد</span>
+              {/* Heading */}
+              <h1
+                class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.1] mb-6 fade-in-up"
+                style="animation-delay:.08s"
+              >
+                جایی برای{" "}
+                <span class="text-gradient">دانشِ آزاد</span>
                 <br class="hidden sm:block" />
                 و جامعهٔ متن‌باز کاشان
               </h1>
 
-              <p class="text-gray-400 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 mb-9 fade-in-up" style="animation-delay:.16s">
+              {/* Description */}
+              <p
+                class="text-white/85 text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 mb-9 fade-in-up"
+                style="animation-delay:.16s"
+              >
                 کاشان‌لاگ اجتماع کاربران و علاقه‌مندان به گنو/لینوکس، نرم‌افزار آزاد و
                 فناوری‌های متن‌باز است؛ فضایی دوستانه برای یادگیری، تبادل تجربه و ساختن در کنار یکدیگر.
               </p>
 
-              <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 fade-in-up" style="animation-delay:.24s">
-                <a href={hashPath("/event")}
-                  class="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl font-bold text-white bg-gradient-to-l from-brand-600 to-brand-500 shadow-xl shadow-brand-900/40 hover:-translate-y-1 transition-all">
+              {/* CTA buttons */}
+              <div
+                class="flex flex-wrap items-center justify-center lg:justify-start gap-4 fade-in-up"
+                style="animation-delay:.24s"
+              >
+                <a
+                  href={hashPath("/event")}
+                  class="inline-flex items-center gap-2 px-7 py-4 rounded-2xl font-bold text-brand-700 bg-white hover:-translate-y-1 hover:shadow-2xl transition-all shadow-xl"
+                >
                   مشاهدهٔ رویداد «زندگی در سایه»
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/></svg>
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/>
+                  </svg>
                 </a>
-                <a href={hashPath("/join")}
-                  class="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl font-bold text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
+                <a
+                  href={hashPath("/join")}
+                  class="inline-flex items-center gap-2 px-7 py-4 rounded-2xl font-bold text-white glass-light hover:-translate-y-1 transition-all"
+                >
                   همکاری با ما
                 </a>
               </div>
 
-              <div class="grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0 mt-12 fade-in-up" style="animation-delay:.32s">
-                <div class="text-center lg:text-right">
+              {/* Stats */}
+              <div
+                class="grid grid-cols-3 gap-px max-w-md mx-auto lg:mx-0 mt-12 rounded-2xl overflow-hidden fade-in-up"
+                style="animation-delay:.32s"
+              >
+                <div class="glass-light px-4 py-5 text-center lg:text-right">
                   <div class="text-3xl font-black text-white">۷+</div>
-                  <div class="text-xs text-gray-500 mt-1">سخنران</div>
+                  <div class="text-xs text-white/70 mt-1 font-medium">سخنران</div>
                 </div>
-                <div class="text-center lg:text-right border-x border-white/10">
+                <div class="glass-light px-4 py-5 text-center lg:text-right">
                   <div class="text-3xl font-black text-white">۱۳</div>
-                  <div class="text-xs text-gray-500 mt-1">عضو تیم اجرایی</div>
+                  <div class="text-xs text-white/70 mt-1 font-medium">عضو تیم اجرایی</div>
                 </div>
-                <div class="text-center lg:text-right">
-                  <div class="text-3xl font-black text-white">۴ ساعت</div>
-                  <div class="text-xs text-gray-500 mt-1">برنامهٔ فشرده</div>
+                <div class="glass-light px-4 py-5 text-center lg:text-right">
+                  <div class="text-3xl font-black text-white">۴h</div>
+                  <div class="text-xs text-white/70 mt-1 font-medium">برنامهٔ فشرده</div>
                 </div>
               </div>
             </div>
 
-            <div class="fade-in-up" style="animation-delay:.2s">
+            {/* Right: Terminal card */}
+            <div class="fade-in-up order-1 lg:order-2" style="animation-delay:.2s">
               <TerminalCard />
             </div>
           </div>
         </div>
 
+        {/* Scroll indicator */}
         <div class="absolute bottom-6 inset-x-0 flex justify-center">
-          <svg class="w-6 h-6 text-gray-600 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-          </svg>
+          <div class="flex flex-col items-center gap-1 text-white/50">
+            <span class="text-xs font-medium">اسکرول کنید</span>
+            <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+          </div>
         </div>
       </section>
     );
