@@ -20,10 +20,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm config set registry https://registry.npmjs.org
+          npm install --no-package-lock
 
       - name: Build
         run: npm run build
