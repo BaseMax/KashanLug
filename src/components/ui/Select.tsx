@@ -4,11 +4,13 @@ interface Attrs {
   label:        string;
   value:        string;
   onchange:     (val: string) => void;
+  onblur?:      () => void;
   options:      string[];
   placeholder?: string;
   required?:    boolean;
   disabled?:    boolean;
   bg?:          string;
+  error?:       string;
 }
 
 export class Select implements Mithril.ClassComponent<Attrs> {
@@ -26,15 +28,16 @@ export class Select implements Mithril.ClassComponent<Attrs> {
   onremove() { document.removeEventListener("click", this.closeOnOutside); }
 
   view({ attrs }: Mithril.CVnode<Attrs>) {
-    const { label, value, onchange, options, placeholder, required, disabled, bg } = attrs;
+    const { label, value, onchange, onblur, options, placeholder, required, disabled, bg, error } = attrs;
     const triggerBg = bg ?? "bg-card3";
     const hasValue  = !!value;
+    const hasErr    = !!error;
 
     return (
       <div oncreate={(vnode: { dom: Element }) => { this.root = vnode.dom; }}>
         <label class="block text-sm text-muted mb-1.5">
           {label}
-          {required && <span class="text-brand-500 mr-0.5"> *</span>}
+          {required && <span class="text-red-500 mr-0.5"> *</span>}
         </label>
 
         <div class="relative">
@@ -48,10 +51,11 @@ export class Select implements Mithril.ClassComponent<Attrs> {
               "text-right transition-all outline-none",
               triggerBg,
               this.open
-                ? "border-brand-500 ring-2 ring-brand-500/20"
-                : "border-ui hover:border-brand-500/40",
+                ? (hasErr ? "border-red-500 ring-2 ring-red-500/20" : "border-brand-500 ring-2 ring-brand-500/20")
+                : (hasErr ? "border-red-500 hover:border-red-400" : "border-ui hover:border-brand-500/40"),
               disabled ? "opacity-50 cursor-not-allowed" : "",
             ].filter(Boolean).join(" ")}
+            onblur={() => { onblur?.(); }}
           >
             <span class={`truncate text-sm ${hasValue ? "text-fore" : "text-dim"}`}>
               {hasValue ? value : (placeholder ?? "")}
@@ -118,6 +122,15 @@ export class Select implements Mithril.ClassComponent<Attrs> {
             </ul>
           )}
         </div>
+
+        {hasErr && (
+          <p class="mt-1.5 flex items-center gap-1 text-xs text-red-500">
+            <svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+            </svg>
+            {error}
+          </p>
+        )}
       </div>
     );
   }

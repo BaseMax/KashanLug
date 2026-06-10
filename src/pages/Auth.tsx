@@ -3,17 +3,21 @@ import { Layout }        from "@/components/Layout";
 import { Btn }           from "@/components/ui/Btn";
 import { OtpInput }      from "@/components/ui/OtpInput";
 import { TerminalBlock } from "@/components/TerminalBlock";
+import { validate, required, iranPhone } from "@/lib/validate";
 import { setTitle, faDigit } from "@/lib/utils";
 
 type Step = "phone" | "otp";
 
 export class Auth implements Mithril.ClassComponent {
-  step: Step  = "phone";
-  phone       = "";
-  otp         = ["", "", "", "", "", ""];
-  sending     = false;
-  resendSecs  = 0;
-  done        = false;
+  step: Step   = "phone";
+  phone        = "";
+  phoneError   = "";
+  phoneTouched = false;
+  otpError     = "";
+  otp          = ["", "", "", "", "", ""];
+  sending      = false;
+  resendSecs   = 0;
+  done         = false;
   private resendInterval: ReturnType<typeof setInterval> | null = null;
 
   oninit() { setTitle("ورود / ثبت‌نام"); }
@@ -29,8 +33,16 @@ export class Auth implements Mithril.ClassComponent {
     }, 1000);
   }
 
+  validatePhone(): boolean {
+    this.phoneTouched = true;
+    const err = validate(this.phone, required("شماره موبایل"), iranPhone());
+    this.phoneError = err ?? "";
+    return !err;
+  }
+
   sendOtp(e: Event) {
     e.preventDefault();
+    if (!this.validatePhone()) { m.redraw(); return; }
     this.sending = true;
     setTimeout(() => {
       this.sending = false;
@@ -43,6 +55,12 @@ export class Auth implements Mithril.ClassComponent {
 
   verifyOtp(e: Event) {
     e.preventDefault();
+    if (this.otp.join("").length < 6) {
+      this.otpError = "لطفاً تمام ۶ رقم کد تأیید را وارد کنید";
+      m.redraw();
+      return;
+    }
+    this.otpError = "";
     this.sending = true;
     setTimeout(() => { this.sending = false; this.done = true; m.redraw(); }, 800);
   }
@@ -104,17 +122,39 @@ export class Auth implements Mithril.ClassComponent {
                       <p class="text-muted">ورود شما با موفقیت انجام شد.</p>
                     </div>
                   ) : this.step === "phone" ? (
-                    <form onsubmit={(e: Event) => this.sendOtp(e)}>
+                    <form onsubmit={(e: Event) => this.sendOtp(e)} novalidate>
                       <h2 class="text-2xl font-black text-fore mb-2">ورود / ثبت‌نام</h2>
                       <p class="text-muted text-sm mb-8">با شماره موبایل وارد شوید. کد تأیید برایتان ارسال می‌شود.</p>
-                      <label class="block text-sm text-muted mb-2">شماره موبایل</label>
+                      <label class="block text-sm text-muted mb-1.5">
+                        شماره موبایل <span class="text-red-500">*</span>
+                      </label>
                       <input
-                        type="tel" required dir="ltr" value={this.phone}
-                        oninput={(e: InputEvent) => { this.phone = (e.target as HTMLInputElement).value; }}
+                        type="tel" dir="ltr" value={this.phone}
+                        oninput={(e: InputEvent) => {
+                          this.phone = (e.target as HTMLInputElement).value;
+                          if (this.phoneTouched) {
+                            const err = validate(this.phone, required("شماره موبایل"), iranPhone());
+                            this.phoneError = err ?? "";
+                          }
+                        }}
+                        onblur={() => this.validatePhone()}
                         placeholder="09xxxxxxxxx"
-                        class="w-full px-4 py-3.5 rounded-2xl bg-card3 border border-ui text-fore text-center tracking-widest placeholder:text-dim focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 outline-none transition mb-6"
+                        class={`w-full px-4 py-3.5 rounded-2xl bg-card3 border text-fore text-center tracking-widest placeholder:text-dim focus:ring-2 outline-none transition mb-1.5 ${
+                          this.phoneTouched && this.phoneError
+                            ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
+                            : "border-ui focus:border-brand-500 focus:ring-brand-500/30"
+                        }`}
                       />
-                      <Btn type="submit" disabled={this.sending || this.phone.length < 10} class="w-full py-4 rounded-2xl">
+                      {this.phoneTouched && this.phoneError && (
+                        <p class="flex items-center gap-1 text-xs text-red-500 mb-5">
+                          <svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                          </svg>
+                          {this.phoneError}
+                        </p>
+                      )}
+                      {!(this.phoneTouched && this.phoneError) && <div class="mb-5"></div>}
+                      <Btn type="submit" disabled={this.sending} class="w-full py-4 rounded-2xl">
                         {this.sending ? "در حال ارسال..." : "دریافت کد تأیید"}
                       </Btn>
                     </form>
@@ -133,10 +173,18 @@ export class Auth implements Mithril.ClassComponent {
                       </p>
                       <OtpInput
                         values={this.otp}
-                        oninput={(i: number, val: string) => this.handleOtpInput(i, val)}
+                        oninput={(i: number, val: string) => { this.handleOtpInput(i, val); this.otpError = ""; }}
                         onkeydown={(i: number, e: KeyboardEvent) => this.handleOtpKey(i, e)}
                       />
-                      <Btn type="submit" disabled={this.sending || this.otp.join("").length < 6} class="w-full py-4 rounded-2xl mt-8 mb-5">
+                      {this.otpError && (
+                        <p class="mt-3 flex items-center justify-center gap-1 text-xs text-red-500">
+                          <svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                          </svg>
+                          {this.otpError}
+                        </p>
+                      )}
+                      <Btn type="submit" disabled={this.sending} class="w-full py-4 rounded-2xl mt-6 mb-5">
                         {this.sending ? "در حال تأیید..." : "تأیید و ورود"}
                       </Btn>
                       <div class="text-center text-sm text-dim">
