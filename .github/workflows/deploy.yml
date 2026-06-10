@@ -28,6 +28,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          BASE_PATH: /KashanLug/
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4

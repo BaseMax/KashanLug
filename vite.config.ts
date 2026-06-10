@@ -3,7 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { resolve } from "node:path";
 
 export default defineConfig({
-  base: "/KashanLug/",
+  base: process.env.BASE_PATH ?? "/",
   plugins: [tailwindcss()],
   resolve: {
     alias: { "@": resolve(__dirname, "src") },
