@@ -2,6 +2,12 @@ import m from "mithril";
 import { TerminalCard } from "@/components/TerminalCard";
 import { hashPath } from "@/lib/utils";
 
+const HERO_STATS: readonly { val: string; label: string }[] = [
+  { val: "۷+", label: "سخنران"         },
+  { val: "۱۳", label: "عضو تیم اجرایی" },
+  { val: "۴h", label: "برنامهٔ فشرده"  },
+];
+
 export class HomeHero implements Mithril.ClassComponent {
   view() {
     return (
@@ -94,18 +100,12 @@ export class HomeHero implements Mithril.ClassComponent {
                 class="grid grid-cols-3 gap-px max-w-md mx-auto lg:mx-0 mt-12 rounded-2xl overflow-hidden fade-in-up"
                 style="animation-delay:.32s"
               >
-                <div class="glass-light px-4 py-5 text-center lg:text-right">
-                  <div class="text-3xl font-black text-white">۷+</div>
-                  <div class="text-xs text-white/70 mt-1 font-medium">سخنران</div>
-                </div>
-                <div class="glass-light px-4 py-5 text-center lg:text-right">
-                  <div class="text-3xl font-black text-white">۱۳</div>
-                  <div class="text-xs text-white/70 mt-1 font-medium">عضو تیم اجرایی</div>
-                </div>
-                <div class="glass-light px-4 py-5 text-center lg:text-right">
-                  <div class="text-3xl font-black text-white">۴h</div>
-                  <div class="text-xs text-white/70 mt-1 font-medium">برنامهٔ فشرده</div>
-                </div>
+                {HERO_STATS.map((s) => (
+                  <div key={s.label} class="glass-light px-4 py-5 text-center lg:text-right">
+                    <div class="text-3xl font-black text-white">{s.val}</div>
+                    <div class="text-xs text-white/70 mt-1 font-medium">{s.label}</div>
+                  </div>
+                ))}
               </div>
             </div>
 

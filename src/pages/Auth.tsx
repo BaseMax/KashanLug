@@ -8,6 +8,17 @@ import { setTitle, faDigit } from "@/lib/utils";
 
 type Step = "phone" | "otp";
 
+function FieldError({ msg }: { msg: string }): m.Vnode {
+  return (
+    <p class="flex items-center gap-1 text-xs text-red-500">
+      <svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+      </svg>
+      {msg}
+    </p>
+  );
+}
+
 export class Auth implements Mithril.ClassComponent {
   step: Step   = "phone";
   phone        = "";
@@ -145,15 +156,10 @@ export class Auth implements Mithril.ClassComponent {
                             : "border-ui focus:border-brand-500 focus:ring-brand-500/30"
                         }`}
                       />
-                      {this.phoneTouched && this.phoneError && (
-                        <p class="flex items-center gap-1 text-xs text-red-500 mb-5">
-                          <svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                          </svg>
-                          {this.phoneError}
-                        </p>
-                      )}
-                      {!(this.phoneTouched && this.phoneError) && <div class="mb-5"></div>}
+                      {this.phoneTouched && this.phoneError
+                        ? <div class="mb-5"><FieldError msg={this.phoneError} /></div>
+                        : <div class="mb-5"></div>
+                      }
                       <Btn type="submit" disabled={this.sending} class="w-full py-4 rounded-2xl">
                         {this.sending ? "در حال ارسال..." : "دریافت کد تأیید"}
                       </Btn>
@@ -177,12 +183,9 @@ export class Auth implements Mithril.ClassComponent {
                         onkeydown={(i: number, e: KeyboardEvent) => this.handleOtpKey(i, e)}
                       />
                       {this.otpError && (
-                        <p class="mt-3 flex items-center justify-center gap-1 text-xs text-red-500">
-                          <svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                          </svg>
-                          {this.otpError}
-                        </p>
+                        <div class="mt-3 flex justify-center">
+                          <FieldError msg={this.otpError} />
+                        </div>
                       )}
                       <Btn type="submit" disabled={this.sending} class="w-full py-4 rounded-2xl mt-6 mb-5">
                         {this.sending ? "در حال تأیید..." : "تأیید و ورود"}

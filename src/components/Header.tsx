@@ -3,6 +3,19 @@ import { navItems, site } from "@/data/site";
 import { hashPath } from "@/lib/utils";
 import { toggleTheme, isDark } from "@/lib/theme";
 
+function themeIcon(dark: boolean): m.Vnode {
+  return dark ? (
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4" stroke-width="2"/>
+      <path stroke-linecap="round" stroke-width="2" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+    </svg>
+  ) : (
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+    </svg>
+  );
+}
+
 export class Header implements Mithril.ClassComponent {
   open     = false;
   scrolled = false;
@@ -82,16 +95,7 @@ export class Header implements Mithril.ClassComponent {
                 aria-label={dark ? "تغییر به حالت روشن" : "تغییر به حالت تاریک"}
                 title={dark ? "حالت روشن" : "حالت تاریک"}
               >
-                {dark ? (
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="4" stroke-width="2"/>
-                    <path stroke-linecap="round" stroke-width="2" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-                  </svg>
-                ) : (
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
-                  </svg>
-                )}
+                {themeIcon(dark)}
               </button>
 
               <a href={hashPath("/join")}
@@ -111,16 +115,7 @@ export class Header implements Mithril.ClassComponent {
                 class="cursor-pointer p-2 rounded-xl text-white/75 hover:text-white hover:bg-white/15 transition-all"
                 aria-label={dark ? "تغییر به حالت روشن" : "تغییر به حالت تاریک"}
               >
-                {dark ? (
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="4" stroke-width="2"/>
-                    <path stroke-linecap="round" stroke-width="2" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-                  </svg>
-                ) : (
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
-                  </svg>
-                )}
+                {themeIcon(dark)}
               </button>
               <button
                 class="cursor-pointer p-2 rounded-xl text-white/85 hover:text-white hover:bg-white/15 transition-all"

@@ -4,8 +4,50 @@ import { DiscountNote } from "@/components/DiscountNote";
 import { eventInfo }    from "@/data/event";
 import { hashPath }     from "@/lib/utils";
 
+interface InfoRow {
+  iconBg:    string;
+  icon:      m.Vnode;
+  title:     string;
+  body?:     string;
+  discount?: true;
+}
+
+const INFO_ROWS: InfoRow[] = [
+  {
+    iconBg: "bg-brand-500/10 text-brand-600 dark:text-brand-400",
+    icon: (
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+      </svg>
+    ),
+    title: "زمان برگزاری",
+    body: `${eventInfo.dateFa} - ${eventInfo.timeFa}`,
+  },
+  {
+    iconBg: "bg-term-500/10 text-term-600 dark:text-term-400",
+    icon: (
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+      </svg>
+    ),
+    title: "محل برگزاری",
+    body: eventInfo.venue,
+  },
+  {
+    iconBg: "bg-brand-500/10 text-brand-600 dark:text-brand-400",
+    icon: (
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"/>
+      </svg>
+    ),
+    title: "کد تخفیف ویژه",
+    discount: true,
+  },
+];
+
 export class HomeEvent implements Mithril.ClassComponent {
-  view() {
+  view(): m.Vnode {
     return (
       <section class="relative py-20 sm:py-28">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
@@ -32,38 +74,15 @@ export class HomeEvent implements Mithril.ClassComponent {
                 </div>
               </div>
               <div class="space-y-4">
-                {[
-                  {
-                    iconBg: "bg-brand-500/10 text-brand-600 dark:text-brand-400",
-                    icon: <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>,
-                    title: "زمان برگزاری",
-                    body: `${eventInfo.dateFa} - ${eventInfo.timeFa}`,
-                  },
-                  {
-                    iconBg: "bg-term-500/10 text-term-600 dark:text-term-400",
-                    icon: <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>,
-                    title: "محل برگزاری",
-                    body: eventInfo.venue,
-                  },
-                  {
-                    iconBg: "bg-brand-500/10 text-brand-600 dark:text-brand-400",
-                    icon: <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"/></svg>,
-                    title: "کد تخفیف ویژه",
-                    body: null,
-                  },
-                ].map((item, i) => (
-                  <div key={i} class="flex items-start gap-4 p-5 rounded-2xl bg-ui border border-ui">
+                {INFO_ROWS.map((item) => (
+                  <div key={item.title} class="flex items-start gap-4 p-5 rounded-2xl bg-ui border border-ui">
                     <div class={`w-11 h-11 rounded-xl ${item.iconBg} flex items-center justify-center shrink-0`}>
                       {item.icon}
                     </div>
                     <div>
                       <div class="text-fore font-bold">{item.title}</div>
                       {item.body && <div class="text-muted text-sm mt-1">{item.body}</div>}
-                      {i === 2 && (
-                        <div class="text-muted text-sm mt-1">
-                          <DiscountNote variant="card" />
-                        </div>
-                      )}
+                      {item.discount && <div class="text-muted text-sm mt-1"><DiscountNote variant="card" /></div>}
                     </div>
                   </div>
                 ))}

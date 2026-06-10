@@ -32,7 +32,6 @@ export function selectRequired(label = "این فیلد"): Validator {
   return (val) => val ? null : `${label} را انتخاب کنید`;
 }
 
-/** Run validators in order; return the first error or null. */
 export function validate(val: string, ...validators: Validator[]): string | null {
   for (const v of validators) {
     const err = v(val);
