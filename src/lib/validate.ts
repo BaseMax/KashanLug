@@ -1,3 +1,5 @@
+import { faDigit } from "@/lib/utils";
+
 export type Validator = (val: string) => string | null;
 
 export function required(label = "این فیلد"): Validator {
@@ -7,13 +9,13 @@ export function required(label = "این فیلد"): Validator {
 export function minLength(min: number, label = "این فیلد"): Validator {
   return (val) => val.trim().length >= min
     ? null
-    : `${label} باید حداقل ${min} کاراکتر باشد`;
+    : `${label} باید حداقل ${faDigit(min)} کاراکتر باشد`;
 }
 
 export function maxLength(max: number, label = "این فیلد"): Validator {
   return (val) => val.trim().length <= max
     ? null
-    : `${label} نباید بیشتر از ${max} کاراکتر باشد`;
+    : `${label} نباید بیشتر از ${faDigit(max)} کاراکتر باشد`;
 }
 
 export function email(): Validator {
