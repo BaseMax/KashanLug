@@ -1,0 +1,37 @@
+{
+  "name": "kashanlug",
+  "version": "1.0.0",
+  "description": "No css, fully tailwindcss\r html\r javascript\r All and fully persian text, rtl website",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baseMax/KashanLug.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/baseMax/KashanLug/issues"
+  },
+  "homepage": "https://github.com/baseMax/KashanLug#readme",
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.0",
+    "@types/alpinejs": "^3.13.11",
+    "@types/node": "^25.9.2",
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16"
+  },
+  "dependencies": {
+    "@fontsource/vazirmatn": "^5.2.8",
+    "alpinejs": "^3.15.12"
+  }
+}

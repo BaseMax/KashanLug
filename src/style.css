@@ -1,0 +1,222 @@
+/* ===== Fonts ===== */
+@import "@fontsource/vazirmatn/300.css";
+@import "@fontsource/vazirmatn/400.css";
+@import "@fontsource/vazirmatn/500.css";
+@import "@fontsource/vazirmatn/700.css";
+@import "@fontsource/vazirmatn/800.css";
+@import "@fontsource/vazirmatn/900.css";
+
+@import "tailwindcss";
+
+/* ===== Design tokens ===== */
+@theme {
+  --font-sans: "Vazirmatn", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", "Consolas",
+    ui-monospace, monospace;
+
+  /* Brand - terminal amber/orange */
+  --color-brand-50: #fff7ed;
+  --color-brand-100: #ffedd5;
+  --color-brand-200: #fed7aa;
+  --color-brand-300: #fdba74;
+  --color-brand-400: #fb923c;
+  --color-brand-500: #f97316;
+  --color-brand-600: #ea580c;
+  --color-brand-700: #c2410c;
+  --color-brand-800: #9a3412;
+  --color-brand-900: #7c2d12;
+  --color-brand-950: #431407;
+
+  /* Terminal green accent */
+  --color-term-300: #86efac;
+  --color-term-400: #4ade80;
+  --color-term-500: #22c55e;
+  --color-term-600: #16a34a;
+
+  /* Ink - near-black surfaces */
+  --color-ink-950: #0a0a0b;
+  --color-ink-900: #101012;
+  --color-ink-850: #16161a;
+  --color-ink-800: #1c1c21;
+  --color-ink-700: #26262d;
+  --color-ink-600: #34343d;
+
+  --radius-4xl: 2rem;
+
+  --animate-bounce-slow: bounce-slow 2.5s ease-in-out infinite;
+  --animate-blink: blink 1s step-end infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-marquee: marquee 30s linear infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(50%); }
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Base ===== */
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-feature-settings: "ss01";
+    -webkit-font-smoothing: antialiased;
+  }
+  [x-cloak] {
+    display: none !important;
+  }
+  /* Persian digit-friendly numerals via Vazirmatn handled by font; keep tabular for terminals */
+  ::selection {
+    background-color: var(--color-brand-500);
+    color: #fff;
+  }
+  /* Slim scrollbar on dark UI */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink-900);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-ink-700);
+    border-radius: 9999px;
+    border: 2px solid var(--color-ink-900);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-brand-700);
+  }
+}
+
+/* ===== Reusable utilities / components ===== */
+
+/* Animated entrance - applied with stagger via inline animation-delay */
+.fade-in-up {
+  opacity: 0;
+  animation: fade-in-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Dotted/grid hacker background */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+.bg-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Soft radial glow blobs */
+.glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Gradient brand text */
+.text-gradient {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-brand-400),
+    var(--color-brand-600) 60%,
+    var(--color-term-500)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Section heading underline */
+.title-underline {
+  position: relative;
+  display: inline-block;
+}
+.title-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -0.35rem;
+  right: 0;
+  width: 3.5rem;
+  height: 4px;
+  border-radius: 9999px;
+  background-image: linear-gradient(
+    to left,
+    var(--color-brand-500),
+    var(--color-brand-500) 40%,
+    transparent
+  );
+}
+
+/* Card with subtle gradient border on hover */
+.card-glow {
+  position: relative;
+  isolation: isolate;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+}
+.card-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-500),
+    transparent 40%,
+    transparent 60%,
+    var(--color-term-500)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: -1;
+}
+.card-glow:hover::before {
+  opacity: 1;
+}
+
+/* Terminal prompt blinking caret */
+.caret {
+  display: inline-block;
+  width: 9px;
+  height: 1.05em;
+  background-color: var(--color-term-400);
+  vertical-align: text-bottom;
+  margin-inline-start: 2px;
+  animation: var(--animate-blink);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

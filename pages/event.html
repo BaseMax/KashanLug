@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>زندگی در سایه | کاشان‌لاگ</title>
+    <meta name="description" content="زندگی در سایه - نخستین رویداد کاشان‌لاگ با همراهی تهلاگ. پنج‌شنبه ۲۱ خرداد ۱۴۰۵، دانشگاه آزاد واحد کاشان." />
+    <link rel="icon" type="image/png" href="/assets/images/KL1-02.png" />
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+
+  <body data-page="event" class="bg-ink-950 text-gray-200 antialiased overflow-x-hidden">
+    <div id="header"></div>
+
+    <!-- ===================== HERO ===================== -->
+    <section class="relative pt-28 pb-16 overflow-hidden">
+      <div class="absolute inset-0 bg-grid opacity-50"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-ink-950/40 to-ink-950"></div>
+      <div class="glow w-[36rem] h-[36rem] bg-brand-600/20 -top-32 -left-32"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
+        <nav class="text-sm text-gray-500 mb-8 flex items-center gap-2 flex-wrap">
+          <a href="/index.html" class="hover:text-brand-400">خانه</a>
+          <span>/</span><span class="text-gray-300">رویداد</span>
+        </nav>
+
+        <div class="grid lg:grid-cols-3 gap-10">
+          <div class="lg:col-span-2">
+            <div class="flex flex-wrap items-center gap-2 mb-5">
+              <span class="px-3 py-1 rounded-full bg-brand-500/15 text-brand-400 text-xs font-bold font-mono">EVENT 0</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300 text-xs">تکنولوژی</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300 text-xs">کاشان</span>
+            </div>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-5 leading-tight">زندگی در سایه</h1>
+            <p class="text-lg text-gray-400 leading-relaxed max-w-2xl mb-8">
+              نخستین رویداد جامعهٔ علاقه‌مندان نرم‌افزارهای آزاد و متن‌باز کاشان (کاشان‌لاگ)
+              که با همراهی تهلاگ برگزار می‌شود؛ تلاشی برای گفت‌وگو دربارهٔ اینترنت - نه فقط
+              به‌عنوان یک فناوری، بلکه به‌عنوان بخشی از زندگی، جامعه، آموزش، کسب‌وکار و توسعه.
+            </p>
+
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div class="p-4 rounded-2xl bg-ink-900 border border-white/10">
+                <div class="text-brand-400 text-xs mb-1">تاریخ</div>
+                <div class="text-white font-bold text-sm">پنج‌شنبه ۲۱ خرداد ۱۴۰۵</div>
+              </div>
+              <div class="p-4 rounded-2xl bg-ink-900 border border-white/10">
+                <div class="text-brand-400 text-xs mb-1">ساعت</div>
+                <div class="text-white font-bold text-sm">۱۷:۰۰ تا ۲۱:۰۰</div>
+              </div>
+              <div class="p-4 rounded-2xl bg-ink-900 border border-white/10">
+                <div class="text-brand-400 text-xs mb-1">مکان</div>
+                <div class="text-white font-bold text-sm">دانشگاه آزاد کاشان</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ticket card -->
+          <aside class="lg:sticky lg:top-24 h-max">
+            <div class="rounded-3xl bg-gradient-to-br from-ink-900 to-ink-850 border border-white/10 overflow-hidden shadow-2xl">
+              <div class="p-6 border-b border-white/10">
+                <div class="flex items-center gap-3 mb-4">
+                  <img src="/assets/images/KL1-02.png" class="w-12 h-12 object-contain" alt="کاشان‌لاگ" />
+                  <div>
+                    <div class="text-white font-bold">کاشان‌لاگ</div>
+                    <div class="text-gray-500 text-xs">برگزارکننده</div>
+                  </div>
+                </div>
+                <div class="flex items-baseline gap-2">
+                  <span class="text-3xl font-black text-white">۲۵۰٬۰۰۰</span>
+                  <span class="text-gray-400 text-sm">تومان</span>
+                </div>
+              </div>
+              <div class="p-6 space-y-4">
+                <div x-data="countdown" class="grid grid-cols-4 gap-2">
+                  <template x-for="item in [{l:'روز',v:'days'},{l:'ساعت',v:'hours'},{l:'دقیقه',v:'mins'},{l:'ثانیه',v:'secs'}]" :key="item.v">
+                    <div class="bg-ink-950/70 border border-white/10 rounded-xl py-2.5 text-center">
+                      <div class="text-lg font-black text-white font-mono tabular-nums" x-text="$data[item.v]"></div>
+                      <div class="text-[10px] text-gray-500" x-text="item.l"></div>
+                    </div>
+                  </template>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-term-400 bg-term-500/10 rounded-xl p-3">
+                  <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                  با کد <span class="font-mono font-bold">KLUG</span> - ۳۰٪ تخفیف برای ۲۰ بلیت نخست
+                </div>
+                <a href="https://evnd.co/H45r2" target="_blank" rel="noopener"
+                  class="block text-center px-6 py-3.5 rounded-2xl font-bold text-white bg-gradient-to-l from-brand-600 to-brand-500 shadow-lg shadow-brand-900/40 hover:-translate-y-0.5 transition-all">
+                  خرید بلیت
+                </a>
+                <a href="/pages/schedule.html" class="block text-center px-6 py-3 rounded-2xl font-bold text-gray-200 bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
+                  مشاهدهٔ برنامهٔ زمانی
+                </a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT EVENT ===================== -->
+    <section class="py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="grid lg:grid-cols-3 gap-10">
+          <div class="lg:col-span-2 space-y-6 text-gray-300 leading-loose">
+            <h2 class="text-2xl font-black text-white title-underline pb-2 inline-block">دربارهٔ رویداد</h2>
+            <p>
+              در سال‌های اخیر، اینترنت بیش از هر زمان دیگری بر شیوهٔ ارتباط، یادگیری، کار و
+              مشارکت اجتماعی ما اثر گذاشته و به یکی از مهم‌ترین زیرساخت‌های زندگی روزمره
+              تبدیل شده است. در «زندگی در سایه» به سراغ مفهوم اینترنت ملی و چالش‌های زیرساختی
+              می‌رویم، نقش اینترنت در جامعهٔ مدنی و گردش اطلاعات را بررسی می‌کنیم و تجربهٔ
+              شرکت‌ها، متخصصان و فعالان حوزهٔ فناوری را در مواجهه با محدودیت‌ها می‌شنویم.
+            </p>
+            <p>
+              این گردهمایی فرصتی است برای یادگیری، تبادل تجربه، شبکه‌سازی و گفت‌وگو میان
+              دانشجویان، توسعه‌دهندگان، فعالان جامعهٔ متن‌باز و علاقه‌مندان فناوری.
+            </p>
+
+            <h3 class="text-xl font-bold text-white pt-4">در این رویداد چه می‌گذرد؟</h3>
+            <ul id="event-topics" class="grid sm:grid-cols-2 gap-3 not-prose"></ul>
+          </div>
+
+          <!-- NFC networking callout -->
+          <aside class="h-max">
+            <div class="rounded-3xl bg-ink-900 border border-white/10 p-7" dir="rtl">
+              <div class="w-12 h-12 rounded-2xl bg-term-500/15 text-term-400 flex items-center justify-center mb-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/></svg>
+              </div>
+              <h3 class="text-white font-bold text-lg mb-2">کارت‌های NFC شبکه‌سازی</h3>
+              <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                هر کارت به پروفایل شما در وب‌سایت کاشان‌لاگ متصل می‌شود. در زمان شبکه‌سازی، با
+                نزدیک‌کردن کارت به گوشی سایر همپویان، مهارت‌ها و راه‌های ارتباطی خود را به اشتراک بگذارید.
+              </p>
+              <a href="/pages/resume.html" class="text-brand-400 hover:text-brand-300 text-sm font-bold inline-flex items-center gap-1">
+                مشاهدهٔ نمونهٔ پروفایل
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7"/></svg>
+              </a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SPEAKERS ===================== -->
+    <section class="py-16 bg-ink-900/40 border-y border-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <h2 class="text-3xl font-black text-white title-underline pb-2 inline-block mb-12">سخنرانان و راهبر رویداد</h2>
+        <div id="event-speakers" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5"></div>
+      </div>
+    </section>
+
+    <!-- ===================== SCHEDULE ===================== -->
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
+          <h2 class="text-3xl font-black text-white title-underline pb-2 inline-block">زمان‌بندی</h2>
+          <a href="/pages/schedule.html" class="text-brand-400 hover:text-brand-300 font-bold text-sm">نمای کامل ›</a>
+        </div>
+        <div id="event-schedule" class="grid sm:grid-cols-2 gap-3"></div>
+      </div>
+    </section>
+
+    <!-- ===================== ORGANIZERS & SPONSORS ===================== -->
+    <section class="py-16 bg-ink-900/40 border-y border-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+        <div>
+          <h2 class="text-2xl font-black text-white title-underline pb-2 inline-block mb-8">برگزارکنندگان</h2>
+          <div id="event-organizers" class="grid sm:grid-cols-2 gap-4"></div>
+        </div>
+        <div>
+          <h2 class="text-2xl font-black text-white title-underline pb-2 inline-block mb-8">حامیان</h2>
+          <div id="event-sponsors" class="flex flex-wrap gap-4"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== LOCATION ===================== -->
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <h2 class="text-2xl font-black text-white title-underline pb-2 inline-block mb-8">محل برگزاری</h2>
+        <div class="grid lg:grid-cols-2 gap-6 items-stretch">
+          <div class="p-7 rounded-3xl bg-ink-900 border border-white/10 flex flex-col justify-center">
+            <div class="flex items-start gap-4 mb-5">
+              <div class="w-12 h-12 rounded-2xl bg-brand-500/15 text-brand-400 flex items-center justify-center shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div>
+                <div class="text-white font-bold text-lg">دانشگاه آزاد واحد کاشان</div>
+                <div class="text-gray-400 text-sm mt-1 leading-relaxed">دانشکدهٔ تحصیلات تکمیلی، سالن غیاث‌الدین جمشید کاشانی - بلوار قطب راوندی، خیابان استادان</div>
+              </div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Islamic+Azad+University+Kashan" target="_blank" rel="noopener"
+              class="inline-flex w-max items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+              مسیریابی روی نقشه
+            </a>
+          </div>
+          <div class="rounded-3xl overflow-hidden border border-white/10 min-h-64 relative bg-ink-900">
+            <div class="absolute inset-0 bg-grid opacity-40"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
+              <div class="w-16 h-16 rounded-2xl bg-brand-500/15 text-brand-400 flex items-center justify-center mb-3">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+              </div>
+              <p class="text-gray-400 text-sm">موقعیت جغرافیایی رویداد</p>
+              <p class="text-gray-600 text-xs mt-1 font-mono">31.98° N, 51.43° E - Kashan</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="footer"></div>
+    <div id="scroll-top"></div>
+
+    <script type="module" src="/src/pages/event.ts"></script>
+  </body>
+</html>
