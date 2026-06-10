@@ -1,3 +1,5 @@
+import { asset } from "@/lib/utils";
+
 export interface Speaker {
   name: string;
   title: string;
@@ -40,7 +42,7 @@ export const eventInfo = {
 export const lead: Speaker = {
   name: "علیرضا حسن‌زاده",
   title: "راهبر رویداد",
-  avatar: "/assets/images/alireza.jpg",
+  avatar: asset("assets/images/alireza.jpg"),
   lead: true,
 };
 

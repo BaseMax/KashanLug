@@ -1,13 +1,13 @@
 import m from "mithril";
 import { navItems, secondaryNav, site } from "@/data/site";
-import { hashPath } from "@/lib/utils";
+import { hashPath, asset } from "@/lib/utils";
 import { isDark } from "@/lib/theme";
 
 export class Footer implements Mithril.ClassComponent {
   view() {
     const logo = isDark()
-      ? "/assets/images/logo-dark.png"
-      : "/assets/images/logo-light.png";
+      ? asset("assets/images/logo-dark.png")
+      : asset("assets/images/logo-light.png");
 
     return (
       <footer class="bg-card2 border-t border-ui pt-16 pb-8">

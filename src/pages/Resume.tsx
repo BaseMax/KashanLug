@@ -1,13 +1,13 @@
 import m from "mithril";
 import { Layout }   from "@/components/Layout";
-import { setTitle } from "@/lib/utils";
+import { setTitle, asset } from "@/lib/utils";
 
 const PROFILE = {
   name:      "علیرضا حسن‌زاده",
   nameEn:    "Alireza Hassanzadeh",
   role:      "Data Scientist & Event Lead",
   bio:       "مدیر اجرایی کاشان‌لاگ و راهبر رویداد «زندگی در سایه». علاقه‌مند به علم داده، یادگیری ماشین و جامعهٔ متن‌باز.",
-  avatar:    "/assets/images/alireza.jpg",
+  avatar:    asset("assets/images/alireza.jpg"),
   github:    "https://github.com/AlirezaXZC",
   linkedin:  "https://www.linkedin.com/in/alirezahassanzade",
   telegram:  "https://t.me/KashanLUG",

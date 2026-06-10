@@ -11,7 +11,9 @@ export interface Member {
   lead?: boolean;
 }
 
-const img = (f: string) => `/assets/images/${f}`;
+import { asset } from "@/lib/utils";
+
+const img = (f: string) => asset(`assets/images/${f}`);
 
 export const members: Member[] = [
   {

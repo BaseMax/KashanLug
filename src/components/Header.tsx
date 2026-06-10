@@ -1,6 +1,6 @@
 import m from "mithril";
 import { navItems, site } from "@/data/site";
-import { hashPath } from "@/lib/utils";
+import { hashPath, asset } from "@/lib/utils";
 import { toggleTheme, isDark } from "@/lib/theme";
 
 function themeIcon(dark: boolean): m.Vnode {
@@ -67,7 +67,7 @@ export class Header implements Mithril.ClassComponent {
               <div class="relative">
                 <div class="absolute inset-0 rounded-xl bg-white/15 blur-md group-hover:bg-white/25 transition-all"></div>
                 <img
-                  src="/assets/images/logo-dark.png"
+                  src={asset("assets/images/logo-dark.png")}
                   alt="لوگوی کاشان‌لاگ"
                   class="relative w-9 h-9 rounded-xl object-contain"
                 />

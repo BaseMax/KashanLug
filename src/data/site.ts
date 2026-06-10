@@ -28,5 +28,4 @@ export const site = {
   telegramGroup:"https://t.me/KashanLUG_gp",
   instagram:    "https://instagram.com/kashanlug",
   github:       "https://github.com/baseMax/kashanlug",
-  logo:         "/assets/images/logo-light.png",
 } as const;

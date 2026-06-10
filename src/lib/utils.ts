@@ -2,6 +2,10 @@ export function hashPath(path: string): string {
   return `#${path}`;
 }
 
+export function asset(path: string): string {
+  return import.meta.env.BASE_URL + path.replace(/^\//, "");
+}
+
 const FA_DIGITS = "۰۱۲۳۴۵۶۷۸۹";
 
 export function faDigit(n: number, pad = 0): string {
