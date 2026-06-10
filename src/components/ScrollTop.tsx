@@ -17,7 +17,7 @@ export class ScrollTop implements Mithril.ClassComponent {
   }
 
   view() {
-    if (!this.visible) return <span></span>;
+    if (!this.visible) return null;
     return (
       <button
         onclick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

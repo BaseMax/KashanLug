@@ -1,13 +1,9 @@
 import m from "mithril";
-import { navItems, site } from "../data/site";
-
-/** Compute the href for hash-based routing (prefix "#"). */
-function hashHref(path: string): string {
-  return `#${path}`;
-}
+import { navItems, site } from "@/data/site";
+import { hashPath } from "@/lib/utils";
 
 export class Header implements Mithril.ClassComponent {
-  open = false;
+  open     = false;
   scrolled = false;
 
   private onScroll = () => {
@@ -43,7 +39,7 @@ export class Header implements Mithril.ClassComponent {
       }`}>
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
           <div class="flex items-center justify-between h-16 sm:h-20">
-            <a href={hashHref("/")} class="flex items-center gap-3 shrink-0">
+            <a href={hashPath("/")} class="flex items-center gap-3 shrink-0">
               <img src={site.logo} alt="لوگوی کاشان‌لاگ" class="w-9 h-9 rounded-xl object-contain" />
               <div class="hidden sm:block">
                 <div class="font-black text-white text-base leading-tight">{site.name}</div>
@@ -53,12 +49,14 @@ export class Header implements Mithril.ClassComponent {
 
             <nav class="hidden lg:flex items-center gap-7">
               {navItems.map((item) => (
-                <a href={hashHref(item.href)} class={linkCls(item.href)}>{item.label}</a>
+                <a key={item.key} href={hashPath(item.href)} class={linkCls(item.href)}>
+                  {item.label}
+                </a>
               ))}
             </nav>
 
             <div class="hidden lg:flex items-center gap-3">
-              <a href={hashHref("/join")}
+              <a href={hashPath("/join")}
                 class="px-4 py-2 rounded-xl text-sm font-bold text-gray-200 bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
                 همکاری
               </a>
@@ -69,7 +67,7 @@ export class Header implements Mithril.ClassComponent {
             </div>
 
             <button
-              class="lg:hidden p-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-all"
+              class="cursor-pointer lg:hidden p-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-all"
               onclick={() => { this.open = !open; }}
               aria-label="منوی ناوبری"
             >
@@ -91,7 +89,8 @@ export class Header implements Mithril.ClassComponent {
             <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
               {navItems.map((item) => (
                 <a
-                  href={hashHref(item.href)}
+                  key={item.key}
+                  href={hashPath(item.href)}
                   class={`px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
                     current === item.href ? "bg-brand-500/10 text-brand-400" : "text-gray-300 hover:text-white hover:bg-white/5"
                   }`}
@@ -105,7 +104,7 @@ export class Header implements Mithril.ClassComponent {
                   class="flex-1 text-center py-3 rounded-xl text-sm font-bold text-white bg-gradient-to-l from-brand-600 to-brand-500">
                   خرید بلیت
                 </a>
-                <a href={hashHref("/join")}
+                <a href={hashPath("/join")}
                   class="flex-1 text-center py-3 rounded-xl text-sm font-bold text-gray-200 bg-white/5 border border-white/10"
                   onclick={() => { this.open = false; }}>
                   همکاری

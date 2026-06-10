@@ -1,3 +1,7 @@
+export function hashPath(path: string): string {
+  return `#${path}`;
+}
+
 const FA_DIGITS = "۰۱۲۳۴۵۶۷۸۹";
 
 export function faDigit(n: number, pad = 0): string {

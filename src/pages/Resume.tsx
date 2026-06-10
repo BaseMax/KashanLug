@@ -1,6 +1,6 @@
 import m from "mithril";
-import { Layout } from "../components/Layout";
-import { setTitle } from "../lib/utils";
+import { Layout }   from "@/components/Layout";
+import { setTitle } from "@/lib/utils";
 
 const PROFILE = {
   name:      "علیرضا حسن‌زاده",
@@ -16,8 +16,9 @@ const PROFILE = {
   interests: ["نرم‌افزار آزاد", "جامعه‌سازی فنی", "یادگیری ماشین", "DevOps"],
 };
 
-export const Resume: m.Component = {
-  oninit() { setTitle("پروفایل شبکه‌سازی"); },
+export class Resume implements Mithril.ClassComponent {
+  oninit() { setTitle("پروفایل شبکه‌سازی"); }
+
   view() {
     return (
       <Layout>
@@ -25,9 +26,7 @@ export const Resume: m.Component = {
           <div class="glow w-[36rem] h-96 bg-brand-600/10 -top-10 right-0"></div>
 
           <div class="relative max-w-2xl mx-auto px-4 sm:px-6">
-            {/* NFC Card */}
             <div class="relative rounded-[2.5rem] overflow-hidden border border-white/10 bg-gradient-to-br from-ink-900 to-ink-850 mb-8 shadow-2xl">
-              {/* Card header gradient */}
               <div class="h-36 bg-gradient-to-br from-brand-700 via-brand-800 to-ink-900 relative overflow-hidden">
                 <div class="absolute inset-0 bg-grid opacity-20"></div>
                 <div class="glow w-40 h-40 bg-brand-500/30 -top-10 left-0"></div>
@@ -37,7 +36,6 @@ export const Resume: m.Component = {
                 </div>
               </div>
 
-              {/* Avatar */}
               <div class="flex justify-center -mt-12 mb-5 px-8">
                 <img src={PROFILE.avatar} alt={PROFILE.name}
                   class="w-24 h-24 rounded-2xl object-cover border-4 border-ink-900 shadow-xl" />
@@ -48,7 +46,6 @@ export const Resume: m.Component = {
                 <p class="text-brand-400 text-sm mt-1 font-medium" dir="ltr">{PROFILE.role}</p>
                 <p class="text-gray-400 text-sm mt-3 leading-relaxed">{PROFILE.bio}</p>
 
-                {/* Links */}
                 <div class="flex justify-center flex-wrap gap-3 mt-6">
                   {PROFILE.github && (
                     <a href={PROFILE.github} target="_blank" rel="noopener"
@@ -73,34 +70,27 @@ export const Resume: m.Component = {
               </div>
             </div>
 
-            {/* Skills */}
             <div class="bg-ink-900 border border-white/10 rounded-3xl p-7 mb-6">
               <h2 class="text-lg font-black text-white mb-5">مهارت‌ها</h2>
               <div class="flex flex-wrap gap-2">
                 {PROFILE.skills.map((skill) => (
-                  <span class="px-3 py-1.5 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-300 text-sm font-medium" dir="ltr">
-                    {skill}
-                  </span>
+                  <span key={skill} class="px-3 py-1.5 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-300 text-sm font-medium" dir="ltr">{skill}</span>
                 ))}
               </div>
             </div>
 
-            {/* Interests */}
             <div class="bg-ink-900 border border-white/10 rounded-3xl p-7 mb-8">
               <h2 class="text-lg font-black text-white mb-5">حوزه‌های علاقه</h2>
               <div class="flex flex-wrap gap-2">
                 {PROFILE.interests.map((interest) => (
-                  <span class="px-3 py-1.5 rounded-xl bg-term-500/10 border border-term-500/20 text-term-300 text-sm font-medium">
-                    {interest}
-                  </span>
+                  <span key={interest} class="px-3 py-1.5 rounded-xl bg-term-500/10 border border-term-500/20 text-term-300 text-sm font-medium">{interest}</span>
                 ))}
               </div>
             </div>
 
-            {/* Print button */}
             <div class="text-center">
               <button onclick={() => window.print()}
-                class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-bold text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-sm">
+                class="cursor-pointer inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-bold text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-sm">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
                 ذخیره به عنوان PDF
               </button>
@@ -109,5 +99,5 @@ export const Resume: m.Component = {
         </main>
       </Layout>
     );
-  },
-};
+  }
+}

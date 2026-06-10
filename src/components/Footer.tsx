@@ -1,7 +1,6 @@
 import m from "mithril";
-import { navItems, secondaryNav, site } from "../data/site";
-
-function h(path: string) { return `#${path}`; }
+import { navItems, secondaryNav, site } from "@/data/site";
+import { hashPath } from "@/lib/utils";
 
 export class Footer implements Mithril.ClassComponent {
   view() {
@@ -46,7 +45,11 @@ export class Footer implements Mithril.ClassComponent {
               <h3 class="text-white font-bold mb-4 text-sm">صفحات</h3>
               <ul class="space-y-2.5">
                 {[...navItems, ...secondaryNav].map((item) => (
-                  <li><a href={h(item.href)} class="text-gray-400 hover:text-white text-sm transition-colors">{item.label}</a></li>
+                  <li key={item.key}>
+                    <a href={hashPath(item.href)} class="text-gray-400 hover:text-white text-sm transition-colors">
+                      {item.label}
+                    </a>
+                  </li>
                 ))}
               </ul>
             </div>

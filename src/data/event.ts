@@ -1,7 +1,7 @@
 export interface Speaker {
   name: string;
   title: string;
-  avatar?: string; // optional; falls back to initials block
+  avatar?: string;
   lead?: boolean;
 }
 
@@ -9,7 +9,7 @@ export interface Slot {
   title: string;
   start: string;
   end: string;
-  kind?: "talk" | "break" | "ceremony" | "network"; // for color coding
+  kind?: "talk" | "break" | "ceremony" | "network";
   speaker?: string;
 }
 

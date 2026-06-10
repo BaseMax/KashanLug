@@ -15,7 +15,8 @@
     "jsx": "react",
     "jsxFactory": "m",
     "jsxFragmentFactory": "m.Fragment",
-    "types": ["vite/client"]
+    "types": ["vite/client", "mithril"],
+    "paths": { "@/*": ["./src/*"] }
   },
   "include": ["src", "vite.config.ts"]
 }

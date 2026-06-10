@@ -1,5 +1,5 @@
 import m from "mithril";
-import { calcCountdown, type CountdownData } from "../lib/utils";
+import { calcCountdown, type CountdownData } from "@/lib/utils";
 
 export class Countdown implements Mithril.ClassComponent {
   cd: CountdownData = { days: "۰۰", hours: "۰۰", mins: "۰۰", secs: "۰۰", done: false };
@@ -18,17 +18,16 @@ export class Countdown implements Mithril.ClassComponent {
   }
 
   view() {
-    const { days, hours, mins, secs } = this.cd;
     const items = [
-      { v: days,  l: "روز"   },
-      { v: hours, l: "ساعت"  },
-      { v: mins,  l: "دقیقه" },
-      { v: secs,  l: "ثانیه" },
+      { v: this.cd.days,  l: "روز"   },
+      { v: this.cd.hours, l: "ساعت"  },
+      { v: this.cd.mins,  l: "دقیقه" },
+      { v: this.cd.secs,  l: "ثانیه" },
     ];
     return (
       <div class="grid grid-cols-4 gap-3">
         {items.map((item) => (
-          <div class="bg-ink-950/60 border border-white/10 rounded-2xl py-4 text-center">
+          <div key={item.l} class="bg-ink-950/60 border border-white/10 rounded-2xl py-4 text-center">
             <div class="text-2xl sm:text-3xl font-black text-white tabular-nums">{item.v}</div>
             <div class="text-[11px] text-gray-500 mt-1">{item.l}</div>
           </div>

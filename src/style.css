@@ -8,11 +8,15 @@
 
 @import "tailwindcss";
 
+/* ===== Dark mode via data attribute (not prefers-color-scheme) ===== */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 /* ===== Design tokens ===== */
 @theme {
   --font-sans: "Vazirmatn", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", "Consolas", ui-monospace, monospace;
 
+  /* Brand — orange */
   --color-brand-50:  #fff7ed;
   --color-brand-100: #ffedd5;
   --color-brand-200: #fed7aa;
@@ -25,11 +29,13 @@
   --color-brand-900: #7c2d12;
   --color-brand-950: #431407;
 
+  /* Terminal — green */
   --color-term-300: #86efac;
   --color-term-400: #4ade80;
   --color-term-500: #22c55e;
   --color-term-600: #16a34a;
 
+  /* Ink — used only in dark mode (via [data-theme="dark"]) */
   --color-ink-950: #0a0a0b;
   --color-ink-900: #101012;
   --color-ink-850: #16161a;
@@ -39,29 +45,88 @@
 
   --radius-4xl: 2rem;
 
-  --animate-blink:       blink 1s step-end infinite;
-  --animate-bounce-slow: bounce-slow 2.5s ease-in-out infinite;
-  --animate-float:       float 6s ease-in-out infinite;
-  --animate-fade-in-up:  fade-in-up 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+  --animate-blink:         blink 1s step-end infinite;
+  --animate-bounce-slow:   bounce-slow 2.5s ease-in-out infinite;
+  --animate-float:         float 6s ease-in-out infinite;
+  --animate-fade-in-up:    fade-in-up 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+  --animate-pulse-slow:    pulse-slow 3s ease-in-out infinite;
+  --animate-spin-slow:     spin-slow 20s linear infinite;
+  --animate-hero-float:    hero-float 8s ease-in-out infinite;
 }
 
-@keyframes blink       { 0%,100%{opacity:1} 50%{opacity:0} }
-@keyframes bounce-slow { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-@keyframes float       { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
-@keyframes fade-in-up  { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+@keyframes blink        { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes bounce-slow  { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+@keyframes float        { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+@keyframes fade-in-up   { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+@keyframes pulse-slow   { 0%,100%{opacity:0.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.05)} }
+@keyframes spin-slow    { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+@keyframes hero-float   { 0%,100%{transform:translateY(0) rotate(0deg)} 33%{transform:translateY(-12px) rotate(1deg)} 66%{transform:translateY(-6px) rotate(-0.5deg)} }
 
+/* ===== Semantic theme variables ===== */
 @layer base {
-  :root { color-scheme: dark; }
+  :root {
+    /* Light mode defaults */
+    --c-page:    #fafaf8;
+    --c-card:    #ffffff;
+    --c-card2:   #f4f1ec;
+    --c-card3:   #ede9e3;
+    --c-text:    #111110;
+    --c-text2:   #403e3b;
+    --c-muted:   #78716c;
+    --c-dim:     #a8a29e;
+    --c-border:  rgba(0,0,0,0.09);
+    --c-border2: rgba(0,0,0,0.05);
+    --c-over:    rgba(0,0,0,0.04);
+    --c-over2:   rgba(0,0,0,0.07);
+    color-scheme: light;
+  }
+
+  [data-theme="dark"] {
+    --c-page:    #0a0a0b;
+    --c-card:    #101012;
+    --c-card2:   #16161a;
+    --c-card3:   #1c1c21;
+    --c-text:    #ffffff;
+    --c-text2:   #e5e5e5;
+    --c-muted:   #9ca3af;
+    --c-dim:     #6b7280;
+    --c-border:  rgba(255,255,255,0.09);
+    --c-border2: rgba(255,255,255,0.05);
+    --c-over:    rgba(255,255,255,0.05);
+    --c-over2:   rgba(255,255,255,0.09);
+    color-scheme: dark;
+  }
+
   html  { scroll-behavior: smooth; }
-  body  { font-feature-settings:"ss01"; -webkit-font-smoothing:antialiased; }
-  ::selection { background-color:var(--color-brand-500); color:#fff; }
-  ::-webkit-scrollbar       { width:10px; height:10px; }
-  ::-webkit-scrollbar-track { background:var(--color-ink-900); }
-  ::-webkit-scrollbar-thumb { background:var(--color-ink-700); border-radius:9999px; border:2px solid var(--color-ink-900); }
-  ::-webkit-scrollbar-thumb:hover { background:var(--color-brand-700); }
+  body  {
+    background-color: var(--c-page);
+    color: var(--c-text);
+    font-feature-settings: "ss01";
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background-color: var(--color-brand-500); color: #fff; }
+  ::-webkit-scrollbar       { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--c-card2); }
+  ::-webkit-scrollbar-thumb { background: var(--c-card3); border-radius: 9999px; border: 2px solid var(--c-card2); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-brand-500); }
 }
 
-/* ===== Custom utilities (Tailwind v4 @utility) ===== */
+/* ===== Semantic utilities ===== */
+@utility bg-page    { background-color: var(--c-page); }
+@utility bg-card    { background-color: var(--c-card); }
+@utility bg-card2   { background-color: var(--c-card2); }
+@utility bg-card3   { background-color: var(--c-card3); }
+@utility bg-ui      { background-color: var(--c-over); }
+@utility bg-ui2     { background-color: var(--c-over2); }
+@utility text-fore  { color: var(--c-text); }
+@utility text-fore2 { color: var(--c-text2); }
+@utility text-muted { color: var(--c-muted); }
+@utility text-dim   { color: var(--c-dim); }
+@utility border-ui  { border-color: var(--c-border); }
+@utility border-ui2 { border-color: var(--c-border2); }
+@utility divide-ui  { & > * + * { border-top-color: var(--c-border); } }
+
+/* ===== Custom Tailwind utilities ===== */
 
 @utility fade-in-up {
   opacity: 0;
@@ -70,14 +135,36 @@
 
 @utility bg-grid {
   background-image:
+    linear-gradient(to right,  rgba(0,0,0,.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+@utility bg-grid-dark {
+  background-image:
     linear-gradient(to right,  rgba(255,255,255,.04) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
   background-size: 56px 56px;
 }
 
 @utility bg-dots {
+  background-image: radial-gradient(rgba(0,0,0,.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+@utility bg-dots-dark {
   background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px);
   background-size: 22px 22px;
+}
+
+/* Orange hero background pattern */
+@utility bg-hero-pattern {
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(255,255,255,.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,.08) 0%, transparent 40%),
+    linear-gradient(to right,  rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: auto, auto, 48px 48px, 48px 48px;
 }
 
 @utility glow {
@@ -88,7 +175,22 @@
   z-index: 0;
 }
 
+@utility glow-sm {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
 @utility text-gradient {
+  background-image: linear-gradient(100deg, var(--color-brand-300), var(--color-brand-100) 60%, #fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-gradient-brand {
   background-image: linear-gradient(100deg, var(--color-brand-400), var(--color-brand-600) 60%, var(--color-term-500));
   -webkit-background-clip: text;
   background-clip: text;
@@ -151,4 +253,35 @@
   direction: ltr;
   display: inline;
   unicode-bidi: embed;
+}
+
+/* Glass morphism for dark surfaces */
+@utility glass-dark {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* Glass morphism for light/orange surfaces */
+@utility glass-light {
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.35);
+}
+
+/* Header glow line */
+@utility header-glow-line {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 1px;
+    background: linear-gradient(to left, transparent, var(--color-brand-500), var(--color-brand-400), transparent);
+    opacity: 0.5;
+  }
 }

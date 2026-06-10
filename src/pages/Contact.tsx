@@ -1,32 +1,35 @@
 import m from "mithril";
-import { Layout } from "../components/Layout";
-import { site } from "../data/site";
-import { setTitle } from "../lib/utils";
+import { Layout }     from "@/components/Layout";
+import { Btn }        from "@/components/ui/Btn";
+import { Field }      from "@/components/ui/Field";
+import { SuccessCard } from "@/components/ui/SuccessCard";
+import { site }       from "@/data/site";
+import { setTitle }   from "@/lib/utils";
 
-interface FormState {
-  name: string; email: string; subject: string; message: string;
-  sending: boolean; sent: boolean;
-}
+const CONTACT_ITEMS = [
+  { icon: "email",    title: "ایمیل",          val: site.email,            href: `mailto:${site.email}`, ltr: true  },
+  { icon: "telegram", title: "کانال تلگرام",   val: "@KashanLUG",          href: site.telegram,          ltr: true  },
+  { icon: "telegram", title: "گروه پشتیبانی",  val: "@KashanLUG_gp",       href: site.telegramGroup,     ltr: true  },
+  { icon: "location", title: "موقعیت",         val: "کاشان، استان اصفهان", href: null,                   ltr: false },
+];
 
-export const Contact: m.Component<Record<string, never>, FormState> = {
-  oninit(vnode) {
-    setTitle("تماس با ما");
-    vnode.state.name = "";
-    vnode.state.email = "";
-    vnode.state.subject = "";
-    vnode.state.message = "";
-    vnode.state.sending = false;
-    vnode.state.sent = false;
-  },
-  view(vnode) {
-    const s = vnode.state;
+export class Contact implements Mithril.ClassComponent {
+  name    = "";
+  email   = "";
+  subject = "";
+  message = "";
+  sending = false;
+  sent    = false;
 
-    const submit = (e: Event) => {
-      e.preventDefault();
-      s.sending = true;
-      setTimeout(() => { s.sending = false; s.sent = true; m.redraw(); }, 900);
-    };
+  oninit() { setTitle("تماس با ما"); }
 
+  submit(e: Event) {
+    e.preventDefault();
+    this.sending = true;
+    setTimeout(() => { this.sending = false; this.sent = true; m.redraw(); }, 900);
+  }
+
+  view() {
     return (
       <Layout>
         <main class="pt-32 pb-24 relative overflow-hidden">
@@ -39,40 +42,10 @@ export const Contact: m.Component<Record<string, never>, FormState> = {
             </div>
 
             <div class="grid lg:grid-cols-2 gap-12">
-              {/* Contact cards */}
               <div class="space-y-4">
                 <h2 class="text-xl font-black text-white mb-6">راه‌های ارتباطی</h2>
-                {[
-                  {
-                    icon: "email",
-                    title: "ایمیل",
-                    val: site.email,
-                    href: `mailto:${site.email}`,
-                    ltr: true,
-                  },
-                  {
-                    icon: "telegram",
-                    title: "کانال تلگرام",
-                    val: "@KashanLUG",
-                    href: site.telegram,
-                    ltr: true,
-                  },
-                  {
-                    icon: "telegram",
-                    title: "گروه پشتیبانی",
-                    val: "@KashanLUG_gp",
-                    href: site.telegramGroup,
-                    ltr: true,
-                  },
-                  {
-                    icon: "location",
-                    title: "موقعیت",
-                    val: "کاشان، استان اصفهان",
-                    href: null,
-                    ltr: false,
-                  },
-                ].map((c) => (
-                  <div class="flex items-center gap-4 p-5 rounded-2xl bg-ink-900 border border-white/10">
+                {CONTACT_ITEMS.map((c) => (
+                  <div key={c.title} class="flex items-center gap-4 p-5 rounded-2xl bg-ink-900 border border-white/10">
                     <div class="w-11 h-11 rounded-xl bg-brand-500/15 text-brand-400 flex items-center justify-center shrink-0">
                       {c.icon === "email" && (
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
@@ -99,51 +72,21 @@ export const Contact: m.Component<Record<string, never>, FormState> = {
                 ))}
               </div>
 
-              {/* Form */}
               <div>
                 <h2 class="text-xl font-black text-white mb-6">فرم تماس</h2>
-                {s.sent ? (
-                  <div class="flex flex-col items-center justify-center h-64 gap-4 bg-ink-900 border border-term-500/20 rounded-3xl">
-                    <div class="w-14 h-14 rounded-full bg-term-500/15 text-term-400 flex items-center justify-center">
-                      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                    </div>
-                    <div class="text-center">
-                      <p class="text-white font-bold">پیام شما ارسال شد!</p>
-                      <p class="text-gray-500 text-sm mt-1">در اسرع وقت با شما در ارتباط خواهیم بود.</p>
-                    </div>
-                  </div>
+                {this.sent ? (
+                  <SuccessCard title="پیام شما ارسال شد!" subtitle="در اسرع وقت با شما در ارتباط خواهیم بود." />
                 ) : (
-                  <form onsubmit={submit} class="space-y-4">
+                  <form onsubmit={(e: Event) => this.submit(e)} class="space-y-4">
                     <div class="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <label class="block text-sm text-gray-400 mb-1.5">نام و نام خانوادگی</label>
-                        <input type="text" required value={s.name}
-                          oninput={(e: InputEvent) => { s.name = (e.target as HTMLInputElement).value; }}
-                          class="w-full px-4 py-3 rounded-2xl bg-ink-900 border border-white/10 text-white placeholder-gray-600 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 outline-none transition" />
-                      </div>
-                      <div>
-                        <label class="block text-sm text-gray-400 mb-1.5">ایمیل</label>
-                        <input type="email" required value={s.email} dir="ltr"
-                          oninput={(e: InputEvent) => { s.email = (e.target as HTMLInputElement).value; }}
-                          class="w-full px-4 py-3 rounded-2xl bg-ink-900 border border-white/10 text-white placeholder-gray-600 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 outline-none transition" />
-                      </div>
+                      <Field label="نام و نام خانوادگی" required value={this.name} oninput={(v: string) => { this.name = v; }} />
+                      <Field label="ایمیل" type="email" required ltr value={this.email} oninput={(v: string) => { this.email = v; }} />
                     </div>
-                    <div>
-                      <label class="block text-sm text-gray-400 mb-1.5">موضوع</label>
-                      <input type="text" required value={s.subject}
-                        oninput={(e: InputEvent) => { s.subject = (e.target as HTMLInputElement).value; }}
-                        class="w-full px-4 py-3 rounded-2xl bg-ink-900 border border-white/10 text-white placeholder-gray-600 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 outline-none transition" />
-                    </div>
-                    <div>
-                      <label class="block text-sm text-gray-400 mb-1.5">پیام</label>
-                      <textarea rows={5} required value={s.message}
-                        oninput={(e: InputEvent) => { s.message = (e.target as HTMLTextAreaElement).value; }}
-                        class="w-full px-4 py-3 rounded-2xl bg-ink-900 border border-white/10 text-white placeholder-gray-600 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 outline-none transition resize-none" />
-                    </div>
-                    <button type="submit" disabled={s.sending}
-                      class="w-full py-4 rounded-2xl font-bold text-white bg-gradient-to-l from-brand-600 to-brand-500 hover:-translate-y-0.5 transition-all shadow-lg shadow-brand-900/30 disabled:opacity-60">
-                      {s.sending ? "در حال ارسال..." : "ارسال پیام"}
-                    </button>
+                    <Field label="موضوع" required value={this.subject} oninput={(v: string) => { this.subject = v; }} />
+                    <Field label="پیام" required rows={5} value={this.message} oninput={(v: string) => { this.message = v; }} />
+                    <Btn type="submit" disabled={this.sending} class="w-full py-4 rounded-2xl">
+                      {this.sending ? "در حال ارسال..." : "ارسال پیام"}
+                    </Btn>
                   </form>
                 )}
               </div>
@@ -152,5 +95,5 @@ export const Contact: m.Component<Record<string, never>, FormState> = {
         </main>
       </Layout>
     );
-  },
-};
+  }
+}
