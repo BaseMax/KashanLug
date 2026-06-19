@@ -1,11 +1,13 @@
 import m from "mithril";
 import { TerminalCard } from "@/components/TerminalCard";
-import { hashPath } from "@/lib/utils";
+import { hashPath, faDigit } from "@/lib/utils";
+import { speakers, eventDurationFa } from "@/data/event";
+import { members } from "@/data/team";
 
 const HERO_STATS: readonly { val: string; label: string }[] = [
-  { val: "۷+", label: "سخنران"         },
-  { val: "۱۳", label: "عضو تیم اجرایی" },
-  { val: "۴h", label: "برنامهٔ فشرده"  },
+  { val: faDigit(speakers.length) + "+", label: "سخنران"         },
+  { val: faDigit(members.length),         label: "عضو تیم اجرایی" },
+  { val: eventDurationFa(),               label: "برنامهٔ فشرده"  },
 ];
 
 export class HomeHero implements Mithril.ClassComponent {
@@ -82,7 +84,7 @@ export class HomeHero implements Mithril.ClassComponent {
                   href={hashPath("/event")}
                   class="inline-flex items-center gap-2 px-7 py-4 rounded-2xl font-bold text-brand-700 bg-white hover:-translate-y-1 hover:shadow-2xl transition-all shadow-xl"
                 >
-                  مشاهدهٔ رویداد «زندگی در سایه»
+                  مشاهدهٔ رویداد «دانش بی‌مرز»
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/>
                   </svg>

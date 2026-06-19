@@ -6,7 +6,7 @@ import { eventInfo }    from "@/data/event";
 const INFO_ROWS = [
   { label: "تاریخ",  val: eventInfo.dateFa },
   { label: "ساعت",   val: eventInfo.timeFa },
-  { label: "مکان",   val: eventInfo.city + " - دانشگاه آزاد کاشان" },
+  { label: "مکان",   val: eventInfo.venue },
   { label: "ظرفیت", val: eventInfo.capacity },
 ];
 

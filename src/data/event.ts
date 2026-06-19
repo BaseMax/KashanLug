@@ -1,4 +1,5 @@
-import { asset } from "@/lib/utils";
+import { asset, toEnDigits, faDigit } from "@/lib/utils";
+import { site } from "@/data/site";
 
 export interface Speaker {
   name: string;
@@ -21,87 +22,87 @@ export interface Org {
 }
 
 export const eventInfo = {
-  title: "زندگی در سایه",
+  title: "دانش بی‌مرز",
   subtitle: "نخستین رویداد کاشان‌لاگ - رویداد ۰",
   tagline:
-    "گفت‌وگویی درباره اینترنت؛ نه فقط به‌عنوان یک فناوری، بلکه به‌عنوان بخشی از زندگی، جامعه، آموزش، کسب‌وکار و توسعه.",
-  dateFa: "پنج‌شنبه ۲۱ خرداد ۱۴۰۵",
-  timeFa: "۱۷:۰۰ تا ۲۱:۰۰",
-  city: "کاشان",
-  venue: "دانشگاه آزاد واحد کاشان - سالن غیاث‌الدین جمشید کاشانی",
-  venueDetail: "دانشکده تحصیلات تکمیلی، بلوار قطب راوندی، خیابان استادان",
-  price: "۲۵۰٬۰۰۰ تومان",
+    "گفت‌وگویی درباره نرم‌افزار آزاد؛ نه فقط به‌عنوان یک ابزار، بلکه به‌عنوان بخشی از جامعه، آموزش، کسب‌وکار و توسعه.",
+  dateFa: "جمعه ۱۸ مهر ۱۴۰۵",
+  timeFa: "۱۶:۰۰ تا ۲۰:۰۰",
+  city: site.city,
+  venue: "دانشگاه کاشان - تالار فردوسی",
+  venueDetail: "خیابان دانشگاه، دانشکده مهندسی برق و کامپیوتر",
+  price: "۱۸۰٬۰۰۰ تومان",
   discountCode: "KLUG",
-  discountNote: "۲۰ بلیت نخست با ۳۰٪ تخفیف",
-  registerUrl: "https://evnd.co/H45r2",
-  mapUrl: "https://www.google.com/maps/search/?api=1&query=Islamic+Azad+University+Kashan",
-  coorganizer: "تهلاگ",
-  capacity: "۱۲۰ نفر",
+  discountNote: "۱۵ بلیت نخست با ۲۵٪ تخفیف",
+  registerUrl: "https://evnd.co/example",
+  mapUrl: "https://www.google.com/maps/search/?api=1&query=University+of+Kashan",
+  coorganizer: "کاشان‌لاگ",
+  capacity: "۱۰۰ نفر",
 } as const;
 
 export const lead: Speaker = {
-  name: "علیرضا حسن‌زاده",
+  name: "کاوه رضایی",
   title: "راهبر رویداد",
-  avatar: asset("assets/images/alireza.jpg"),
+  avatar: asset("assets/images/avatar-placeholder.svg"),
   lead: true,
 };
 
 export const speakers: Speaker[] = [
-  { name: "شایان کهنگی", title: "مهندس DevOps در شرکت رسا، علاقه‌مند به دنیای اوپن‌سورس" },
-  { name: "بهاره حلاجی", title: "مدیر فنی شرکت الگوریتم برتر" },
-  { name: "مهدی میرسلطانی", title: "کارشناس امنیت سایبری، هم‌بنیان‌گذار آکادمی راوین" },
-  { name: "حامد بیدی", title: "مدیرعامل پلتفرم کارزار، کنشگر حقِ اینترنت" },
-  { name: "مسعود امامیان", title: "مدیر فنی شرکت فرش محتشم" },
-  { name: "محمد مخملی", title: "مدیر واحد زیرساخت و شبکه شرکت تسنا" },
-  { name: "میثم حلوایی", title: "مشاور IT، دکترای فناوری اطلاعات" },
+  { name: "رضا صادقی", title: "مهندس DevOps در شرکت آریاسرور، علاقه‌مند به دنیای اوپن‌سورس" },
+  { name: "فاطمه کریمی", title: "مدیر فنی شرکت ارتباط‌گستر" },
+  { name: "علی موسوی", title: "کارشناس امنیت سایبری، هم‌بنیان‌گذار آکادمی سپهر" },
+  { name: "سارا رضایی", title: "مدیرعامل پلتفرم کدباز، فعال حقوق دیجیتال" },
+  { name: "محمدرضا تهرانی", title: "مدیر فنی شرکت نوین‌پارس" },
+  { name: "زهرا احمدی", title: "مدیر واحد زیرساخت و شبکه شرکت آرتا" },
+  { name: "کیوان میرزایی", title: "مشاور فناوری، دکترای علوم کامپیوتر" },
 ];
 
 export const schedule: Slot[] = [
-  { title: "درود", start: "۱۷:۰۰", end: "۱۷:۳۰", kind: "ceremony" },
-  { title: "خوش‌آمدگویی", start: "۱۷:۳۰", end: "۱۷:۳۵", kind: "ceremony" },
+  { title: "افتتاحیه", start: "۱۶:۰۰", end: "۱۶:۲۰", kind: "ceremony" },
+  { title: "خوش‌آمدگویی", start: "۱۶:۲۰", end: "۱۶:۲۵", kind: "ceremony" },
   {
-    title: "اینترنت ملی، معماری محدودیت و راه‌های بقا",
-    start: "۱۷:۳۵",
+    title: "هوش مصنوعی و آینده توسعه نرم‌افزار",
+    start: "۱۶:۲۵",
+    end: "۱۷:۰۰",
+    kind: "talk",
+    speaker: "رضا صادقی",
+  },
+  { title: "امنیت زیرساخت ابری در سازمان‌های کوچک", start: "۱۷:۰۰", end: "۱۷:۲۵", kind: "talk", speaker: "فاطمه کریمی" },
+  {
+    title: "چگونه متخصص امنیت فکر می‌کند؟",
+    start: "۱۷:۲۵",
     end: "۱۸:۰۰",
     kind: "talk",
-    speaker: "محمد مخملی",
+    speaker: "علی موسوی",
   },
-  { title: "نقش ERP در شرایط بحران", start: "۱۸:۰۰", end: "۱۸:۲۰", kind: "talk", speaker: "بهاره حلاجی" },
+  { title: "نتورکینگ", start: "۱۸:۰۰", end: "۱۸:۳۵", kind: "network" },
+  { title: "شروعی بر کاشان‌لاگ (راهبری)", start: "۱۸:۳۵", end: "۱۸:۴۵", kind: "ceremony", speaker: "کاوه رضایی" },
   {
-    title: "فراتر از واکنش؛ چگونه یک متخصص به بحران نگاه می‌کند؟",
-    start: "۱۸:۲۰",
-    end: "۱۸:۵۰",
+    title: "متن‌باز و کسب‌وکار: تجربه‌های واقعی",
+    start: "۱۸:۴۵",
+    end: "۱۹:۱۵",
     kind: "talk",
-    speaker: "مهدی میرسلطانی",
-  },
-  { title: "نتورکینگ", start: "۱۸:۵۰", end: "۱۹:۲۵", kind: "network" },
-  { title: "شروعی بر کاشان‌لاگ (راهبری)", start: "۱۹:۲۵", end: "۱۹:۳۵", kind: "ceremony", speaker: "علیرضا حسن‌زاده" },
-  {
-    title: "فرسایش در سکوت؛ اینترنت، روان جمعی و جامعه مدنی",
-    start: "۱۹:۳۵",
-    end: "۲۰:۰۰",
-    kind: "talk",
-    speaker: "حامد بیدی",
+    speaker: "سارا رضایی",
   },
   {
-    title: "روایت تاب‌آوری؛ تجربه شرکت‌ها در عصر محدودیت",
-    start: "۲۰:۱۰",
-    end: "۲۰:۴۰",
+    title: "پایداری زیرساخت فنی در شرایط دشوار",
+    start: "۱۹:۱۵",
+    end: "۱۹:۵۰",
     kind: "talk",
-    speaker: "مسعود امامیان",
+    speaker: "محمدرضا تهرانی",
   },
-  { title: "دانشگاه", start: "۲۰:۴۰", end: "۲۰:۵۰", kind: "ceremony" },
-  { title: "بدرود", start: "۲۰:۵۰", end: "۲۱:۰۰", kind: "ceremony" },
+  { title: "جمع‌بندی و پرسش‌وپاسخ", start: "۱۹:۵۰", end: "۲۰:۱۵", kind: "ceremony" },
+  { title: "اختتامیه", start: "۲۰:۱۵", end: "۲۰:۳۰", kind: "ceremony" },
 ];
 
 export const topics: string[] = [
-  "مفهوم اینترنت ملی، محدودیت‌های زیرساختی و راهکارهای ادامه فعالیت در شرایط اختلال",
-  "نقش ERP در شرایط بحران",
-  "نقش اینترنت در گردش آزاد اطلاعات، جامعه مدنی و قدرت افکار عمومی",
-  "تفاوت نگاه احساسی و نگاه تخصصی در مواجهه با بحران‌های حوزه فناوری",
-  "تجربه شرکت‌ها و تیم‌های فنی در حفظ پایداری زیرساخت در شرایط محدودیت اینترنت",
-  "روایت‌ها و دیدگاه‌های فعالان فناوری درباره اینترنت و تأثیر آن بر جامعه و کسب‌وکارها",
-  "فرصتی برای آشنایی، گفت‌وگو و شبکه‌سازی میان علاقه‌مندان و متخصصان حوزه فناوری",
+  "هوش مصنوعی در توسعه نرم‌افزار و چشم‌انداز آینده برای برنامه‌نویسان",
+  "امنیت زیرساخت‌های ابری و چالش‌های سازمان‌های کوچک و متوسط",
+  "تفاوت نگاه تخصصی و غیرتخصصی در مواجهه با مسائل امنیتی",
+  "متن‌باز در کسب‌وکار: تجربه‌های موفق و درس‌های آموخته",
+  "پایداری زیرساخت فنی و مدیریت بحران در تیم‌های کوچک",
+  "جامعه‌سازی و توسعه اکوسیستم فناوری در شهرستان‌ها",
+  "فرصتی برای آشنایی، گفت‌وگو و شبکه‌سازی میان علاقه‌مندان و متخصصان",
 ];
 
 export const KIND_META: Record<string, { dot: string; badge: string; label: string }> = {
@@ -113,14 +114,22 @@ export const KIND_META: Record<string, { dot: string; badge: string; label: stri
 
 export const organizers: Org[] = [
   { name: "کاشان‌لاگ", desc: "گروه علاقه‌مندان به جریان متن‌باز کاشان" },
-  { name: "تهلاگ", desc: "گروهی مستقل از کاربران لینوکس ساکن تهران" },
+  { name: "کاشان‌لاگ", desc: "جامعه‌ای مستقل از توسعه‌دهندگان و علاقه‌مندان فناوری کاشان" },
 ];
 
+export function eventDurationFa(): string {
+  const [s, e] = eventInfo.timeFa.split(" تا ");
+  const toMin = (t: string) => { const [h, m] = toEnDigits(t).split(":").map(Number); return h * 60 + m; };
+  const total = toMin(e) - toMin(s);
+  const h = total / 60;
+  const display = Number.isInteger(h) ? String(h) : h.toFixed(1);
+  return display.replace(/\d/g, d => faDigit(+d));
+}
+
 export const sponsors: string[] = [
-  "تسنا",
-  "ساربوک",
-  "گلدینو",
-  "Pixotech",
-  "الوقسطی",
-  "الگوریتم برتر",
+  "نوین‌پارس",
+  "داناطرح",
+  "آریاسرور",
+  "WebHost24",
+  "ارتباط‌گستر",
 ];

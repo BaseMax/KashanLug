@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="98" fill="#ffffff" stroke="#e5e7eb" stroke-width="2"/>
+  <text x="100" y="95" font-family="sans-serif" font-size="32" font-weight="900" text-anchor="middle" fill="#f97316">KASHAN</text>
+  <text x="100" y="130" font-family="sans-serif" font-size="18" font-weight="600" text-anchor="middle" fill="#111110" letter-spacing="3">LUG</text>
+</svg>

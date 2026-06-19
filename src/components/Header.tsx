@@ -67,7 +67,7 @@ export class Header implements Mithril.ClassComponent {
               <div class="relative">
                 <div class="absolute inset-0 rounded-xl bg-white/15 blur-md group-hover:bg-white/25 transition-all"></div>
                 <img
-                  src={asset("assets/images/logo-dark.png")}
+                  src={asset("assets/images/logo-dark.svg")}
                   alt="لوگوی کاشان‌لاگ"
                   class="relative w-9 h-9 rounded-xl object-contain"
                 />
@@ -102,7 +102,7 @@ export class Header implements Mithril.ClassComponent {
                 class="px-4 py-2 rounded-xl text-sm font-bold text-white bg-white/15 border border-white/25 hover:bg-white/25 transition-all">
                 همکاری
               </a>
-              <a href="https://evnd.co/H45r2" target="_blank" rel="noopener"
+              <a href="https://evnd.co/example" target="_blank" rel="noopener"
                 class="px-4 py-2 rounded-xl text-sm font-bold text-brand-700 bg-white hover:bg-white/90 transition-all shadow-lg shadow-brand-900/20">
                 خرید بلیت
               </a>
@@ -155,7 +155,7 @@ export class Header implements Mithril.ClassComponent {
                 </a>
               ))}
               <div class="mt-3 pt-3 border-t border-white/15 flex gap-3">
-                <a href="https://evnd.co/H45r2" target="_blank" rel="noopener"
+                <a href="https://evnd.co/example" target="_blank" rel="noopener"
                   class="flex-1 text-center py-3 rounded-xl text-sm font-bold text-brand-700 bg-white">
                   خرید بلیت
                 </a>

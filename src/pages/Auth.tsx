@@ -4,7 +4,7 @@ import { Btn }           from "@/components/ui/Btn";
 import { OtpInput }      from "@/components/ui/OtpInput";
 import { TerminalBlock } from "@/components/TerminalBlock";
 import { validate, required, iranPhone } from "@/lib/validate";
-import { setTitle, faDigit } from "@/lib/utils";
+import { setTitle, faDigit, toFaDigits, toEnDigits } from "@/lib/utils";
 
 type Step = "phone" | "otp";
 
@@ -140,9 +140,9 @@ export class Auth implements Mithril.ClassComponent {
                         شماره موبایل <span class="text-red-500">*</span>
                       </label>
                       <input
-                        type="tel" dir="ltr" value={this.phone}
+                        type="tel" dir="ltr" value={toFaDigits(this.phone)}
                         oninput={(e: InputEvent) => {
-                          this.phone = (e.target as HTMLInputElement).value;
+                          this.phone = toEnDigits((e.target as HTMLInputElement).value);
                           if (this.phoneTouched) {
                             const err = validate(this.phone, required("شماره موبایل"), iranPhone());
                             this.phoneError = err ?? "";
@@ -175,7 +175,7 @@ export class Auth implements Mithril.ClassComponent {
                       </button>
                       <h2 class="text-2xl font-black text-fore mb-2">کد تأیید</h2>
                       <p class="text-muted text-sm mb-8" dir="ltr">
-                        کد ۶ رقمی ارسال‌شده به <span class="text-fore">{this.phone}</span> را وارد کنید.
+                        کد ۶ رقمی ارسال‌شده به <span class="text-fore">{toFaDigits(this.phone)}</span> را وارد کنید.
                       </p>
                       <OtpInput
                         values={this.otp}

@@ -14,6 +14,20 @@ export function faDigit(n: number, pad = 0): string {
     .replace(/\d/g, (d) => FA_DIGITS[+d]);
 }
 
+export function toFaDigits(s: string): string {
+  return s.replace(/[0-9٠-٩]/g, (d) => {
+    const c = d.charCodeAt(0);
+    return FA_DIGITS[c >= 0x0660 ? c - 0x0660 : c - 48];
+  });
+}
+
+export function toEnDigits(s: string): string {
+  return s.replace(/[۰-۹٠-٩]/g, (d) => {
+    const c = d.charCodeAt(0);
+    return String(c >= 0x06F0 ? c - 0x06F0 : c - 0x0660);
+  });
+}
+
 export function setTitle(title: string): void {
   document.title = title ? `${title} | کاشان‌لاگ` : "کاشان‌لاگ | گروه کاربران لینوکس کاشان";
 }
@@ -44,7 +58,7 @@ export function initials(name: string): string {
     : (parts[0]?.slice(0, 2) ?? "?");
 }
 
-const EVENT_TS = Date.parse("2026-06-11T17:00:00+03:30");
+const EVENT_TS = Date.parse("2025-10-10T14:00:00+03:30");
 
 export interface CountdownData {
   days: string;

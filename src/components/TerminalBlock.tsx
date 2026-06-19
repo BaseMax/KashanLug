@@ -16,7 +16,7 @@ export class TerminalBlock implements Mithril.ClassComponent<Attrs> {
             <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
             <span class="ml-auto font-mono text-xs text-gray-500">{attrs.filename}</span>
           </div>
-          <div class="p-5 font-mono text-sm space-y-2">
+          <div class="p-5 font-mono text-sm space-y-2 text-gray-300">
             {children}
           </div>
         </div>

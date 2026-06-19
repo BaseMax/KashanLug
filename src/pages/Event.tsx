@@ -9,7 +9,7 @@ import { EventOrganizers }  from "@/sections/event/EventOrganizers";
 import { setTitle }         from "@/lib/utils";
 
 export class Event implements Mithril.ClassComponent {
-  oninit() { setTitle("رویداد زندگی در سایه"); }
+  oninit() { setTitle("رویداد دانش بی‌مرز"); }
 
   view() {
     return (

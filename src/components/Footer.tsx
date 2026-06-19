@@ -6,8 +6,8 @@ import { isDark } from "@/lib/theme";
 export class Footer implements Mithril.ClassComponent {
   view() {
     const logo = isDark()
-      ? asset("assets/images/logo-dark.png")
-      : asset("assets/images/logo-light.png");
+      ? asset("assets/images/logo-dark.svg")
+      : asset("assets/images/logo-light.svg");
 
     return (
       <footer class="bg-card2 border-t border-ui pt-16 pb-8">
@@ -20,7 +20,7 @@ export class Footer implements Mithril.ClassComponent {
                 <div class="font-black text-fore text-lg">{site.name}</div>
               </div>
               <p class="text-muted text-sm leading-relaxed max-w-xs mb-6">
-                جامعه‌ای مستقل از علاقه‌مندان به گنو/لینوکس، نرم‌افزار آزاد و فناوری‌های متن‌باز در کاشان.
+                جامعه‌ای مستقل از علاقه‌مندان به گنو/لینوکس، نرم‌افزار آزاد و فناوری‌های متن‌باز در {site.city}.
               </p>
               <div class="flex items-center gap-3">
                 <a href={site.telegram} target="_blank" rel="noopener"
@@ -70,15 +70,15 @@ export class Footer implements Mithril.ClassComponent {
                 </li>
                 <li>
                   <a href={site.telegram} target="_blank" rel="noopener" class="text-muted hover:text-brand-500 transition-colors">
-                    کانال تلگرام <span dir="ltr" class="ltr-inline">@KashanLUG</span>
+                    کانال تلگرام <span dir="ltr" class="ltr-inline">{site.telegramHandle}</span>
                   </a>
                 </li>
                 <li>
                   <a href={site.telegramGroup} target="_blank" rel="noopener" class="text-muted hover:text-brand-500 transition-colors">
-                    گروه تلگرام <span dir="ltr" class="ltr-inline">@KashanLUG_gp</span>
+                    گروه تلگرام <span dir="ltr" class="ltr-inline">{site.telegramGroupHandle}</span>
                   </a>
                 </li>
-                <li class="text-dim">کاشان، ایران</li>
+                <li class="text-dim">{site.cityFull}</li>
               </ul>
             </div>
           </div>
@@ -91,7 +91,7 @@ export class Footer implements Mithril.ClassComponent {
               <span dir="ltr" class="ltr-inline">CC BY 4.0</span>{" "}
               منتشر می‌شود.
             </span>
-            <span dir="ltr" class="ltr-inline">KashanLUG - Event Zero</span>
+            <span dir="ltr" class="ltr-inline">KashanLUG - Knowledge Without Borders</span>
           </div>
         </div>
       </footer>

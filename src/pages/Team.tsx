@@ -30,7 +30,7 @@ export class Team implements Mithril.ClassComponent {
           <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-14">
               <h1 class="text-4xl sm:text-5xl font-black text-fore title-underline pb-2 mb-6 inline-block">تیم اجرایی</h1>
-              <p class="text-muted max-w-xl mx-auto">افرادی که پشت صحنهٔ برگزاری رویداد «زندگی در سایه» تلاش می‌کنند.</p>
+              <p class="text-muted max-w-xl mx-auto">افرادی که پشت صحنهٔ برگزاری رویداد «دانش بی‌مرز» تلاش می‌کنند.</p>
             </div>
 
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">

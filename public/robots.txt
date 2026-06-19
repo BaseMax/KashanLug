@@ -5,4 +5,4 @@ Allow: /
 Disallow: /#/auth
 Disallow: /#/resume
 
-Sitemap: https://kashanlug.ir/sitemap.xml
+Sitemap: https://basemax.github.io/KashanLug/sitemap.xml

@@ -1,4 +1,5 @@
 import m from "mithril";
+import { toFaDigits, toEnDigits } from "@/lib/utils";
 
 interface Attrs {
   label:        string;
@@ -22,6 +23,7 @@ export class Field implements Mithril.ClassComponent<Attrs> {
       ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
       : "border-ui focus:border-brand-500 focus:ring-brand-500/30";
     const base    = `w-full px-4 py-3 rounded-2xl ${bg} border ${ring} text-fore placeholder:text-dim focus:ring-2 outline-none transition`;
+    const isTel   = attrs.type === "tel";
 
     return (
       <div>
@@ -44,10 +46,13 @@ export class Field implements Mithril.ClassComponent<Attrs> {
           <input
             type={attrs.type ?? "text"}
             required={attrs.required}
-            value={attrs.value}
+            value={isTel ? toFaDigits(attrs.value) : attrs.value}
             dir={attrs.ltr ? "ltr" : undefined}
             placeholder={attrs.placeholder}
-            oninput={(e: InputEvent) => attrs.oninput((e.target as HTMLInputElement).value)}
+            oninput={(e: InputEvent) => {
+              const raw = (e.target as HTMLInputElement).value;
+              attrs.oninput(isTel ? toEnDigits(raw) : raw);
+            }}
             onblur={() => attrs.onblur?.()}
             class={base}
           />

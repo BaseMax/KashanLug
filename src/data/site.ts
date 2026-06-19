@@ -20,12 +20,18 @@ export const secondaryNav: NavItem[] = [
 ];
 
 export const site = {
-  name:         "کاشان‌لاگ",
-  nameEn:       "KashanLUG",
-  tagline:      "گروه کاربران لینوکس کاشان",
-  email:        "kashanlugsupport@gmail.com",
-  telegram:     "https://t.me/KashanLUG",
-  telegramGroup:"https://t.me/KashanLUG_gp",
-  instagram:    "https://instagram.com/kashanlug",
-  github:       "https://github.com/baseMax/kashanlug",
+  name:               "کاشان‌لاگ",
+  nameEn:             "KashanLUG",
+  tagline:            "گروه کاربران لینوکس کاشان",
+  city:               "کاشان",
+  province:           "اصفهان",
+  cityFull:           "کاشان، ایران",
+  cityProvince:       "استان اصفهان، کاشان",
+  email:              "kashanlugsupport@example.com",
+  telegram:           "https://t.me/KashanLUGDemo",
+  telegramHandle:     "@KashanLUGDemo",
+  telegramGroup:      "https://t.me/KashanLUG_group_demo",
+  telegramGroupHandle:"@KashanLUG_group_demo",
+  instagram:          "https://instagram.com/kashanlugdemo",
+  github:             "https://github.com/baseMax/kashanlug",
 } as const;

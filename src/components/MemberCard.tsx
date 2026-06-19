@@ -12,7 +12,7 @@ export class MemberCard implements Mithril.ClassComponent<Attrs> {
     return (
       <button
         onclick={onclick}
-        class="cursor-pointer card-glow group bg-card border border-ui rounded-3xl p-6 text-center hover:-translate-y-2 text-right w-full transition-all"
+        class="cursor-pointer card-glow group bg-card border border-ui rounded-3xl p-6 text-center hover:-translate-y-2 w-full transition-all"
       >
         <div class="relative w-20 h-20 mx-auto mb-4">
           <img src={member.avatar} alt={member.name} class="w-20 h-20 rounded-2xl object-cover" loading="lazy" />

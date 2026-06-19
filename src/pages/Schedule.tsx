@@ -26,7 +26,7 @@ export class Schedule implements Mithril.ClassComponent {
           <div class="relative max-w-4xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-12">
               <h1 class="text-4xl sm:text-5xl font-black text-fore title-underline pb-2 mb-6 inline-block">برنامهٔ زمانی</h1>
-              <p class="text-muted max-w-lg mx-auto">برنامهٔ رویداد «زندگی در سایه» - {eventInfo.dateFa}، ساعت {eventInfo.timeFa}</p>
+              <p class="text-muted max-w-lg mx-auto">برنامهٔ رویداد «دانش بی‌مرز» - {eventInfo.dateFa}، ساعت {eventInfo.timeFa}</p>
             </div>
 
             <div class="flex justify-center mb-10">
@@ -59,7 +59,7 @@ export class Schedule implements Mithril.ClassComponent {
                           </div>
                           <div class="flex items-center gap-3 shrink-0">
                             <span class={`px-2.5 py-1 rounded-full text-xs font-bold ${st.badge}`}>{st.label}</span>
-                            <div class="text-muted text-sm tabular-nums" dir="ltr">{slot.start}–{slot.end}</div>
+                            <div class="text-muted text-sm tabular-nums" dir="ltr">{slot.start}-{slot.end}</div>
                           </div>
                         </div>
                       </div>

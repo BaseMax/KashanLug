@@ -3,15 +3,15 @@ import { Layout }   from "@/components/Layout";
 import { setTitle, asset } from "@/lib/utils";
 
 const PROFILE = {
-  name:      "علیرضا حسن‌زاده",
-  nameEn:    "Alireza Hassanzadeh",
+  name:      "کاوه رضایی",
+  nameEn:    "Kaveh Rezaei",
   role:      "Data Scientist & Event Lead",
-  bio:       "مدیر اجرایی کاشان‌لاگ و راهبر رویداد «زندگی در سایه». علاقه‌مند به علم داده، یادگیری ماشین و جامعهٔ متن‌باز.",
-  avatar:    asset("assets/images/alireza.jpg"),
-  github:    "https://github.com/AlirezaXZC",
-  linkedin:  "https://www.linkedin.com/in/alirezahassanzade",
+  bio:       "مدیر اجرایی کاشان‌لاگ و راهبر رویداد «فناوری برای همه». علاقه‌مند به علم داده، یادگیری ماشین و جامعهٔ متن‌باز.",
+  avatar:    asset("assets/images/avatar-placeholder.svg"),
+  github:    "https://github.com/kaveh-rezaei-example",
+  linkedin:  "https://www.linkedin.com/in/kaveh-rezaei-example",
   telegram:  "https://t.me/KashanLUG",
-  email:     "kashanlugsupport@gmail.com",
+  email:     "kashanlugsupport@example.com",
   skills:    ["Python", "Machine Learning", "Data Analysis", "Linux", "Git", "Open Source"],
   interests: ["نرم‌افزار آزاد", "جامعه‌سازی فنی", "یادگیری ماشین", "DevOps"],
 };

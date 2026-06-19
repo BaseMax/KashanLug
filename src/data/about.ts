@@ -1,3 +1,7 @@
+import { faDigit } from "@/lib/utils";
+import { speakers, eventInfo } from "@/data/event";
+import { members } from "@/data/team";
+
 export interface Stat {
   n: string;
   l: string;
@@ -9,10 +13,10 @@ export interface Value {
 }
 
 export const stats: Stat[] = [
-  { n: "۱۴۰۵", l: "سال تأسیس"        },
-  { n: "۱۳",   l: "عضو تیم اجرایی"  },
-  { n: "۷+",   l: "سخنران رویداد"   },
-  { n: "۱۲۰",  l: "ظرفیت رویداد"    },
+  { n: "۱۴۰۵",                                          l: "سال تأسیس"       },
+  { n: faDigit(members.length),                          l: "عضو تیم اجرایی" },
+  { n: faDigit(speakers.length) + "+",                   l: "سخنران رویداد"  },
+  { n: eventInfo.capacity.replace(" نفر", ""),           l: "ظرفیت رویداد"   },
 ];
 
 export const values: Value[] = [
