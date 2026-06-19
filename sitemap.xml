@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Root (SPA entry — all hash routes resolve here) -->
+  <url>
+    <loc>https://basemax.github.io/KashanLug/</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fa"      href="https://basemax.github.io/KashanLug/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://basemax.github.io/KashanLug/" />
+    <image:image>
+      <image:loc>https://basemax.github.io/KashanLug/assets/images/poster-1.jpg</image:loc>
+      <image:title>پوستر رویداد دانش بی‌مرز — کاشان‌لاگ</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://basemax.github.io/KashanLug/assets/images/poster-2.jpg</image:loc>
+      <image:title>پوستر دوم رویداد کاشان‌لاگ</image:title>
+    </image:image>
+  </url>
+
+</urlset>
